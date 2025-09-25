@@ -7,7 +7,7 @@
     - [Storing Songs](#storing-songs)
     - [Playlist Options](#playlist-options)
     - [Queue Options](#queue-options)
-<br>
+
 - [Summary & Goals](#summary-and-goals)
 *Task 2 and 3 (in short form). Also answered in the user documentation.*
     - [About the Program](#about-the-program)

@@ -31,7 +31,7 @@ The required information can be referenced below. Unentered non-necessary inform
 | Artist       | ✘              | Unknown       |
 | Album        | ✘              | Unknown       |
 | Genre        | ✘              | Unknown       |
-| Duration     | ✘              | Unknown       |
+| Duration     | ✘              | 0 seconds     |
 | Cover colour | ✘              | #c3cdde     |
 | Liked song?  | ✘              | False         |
   
@@ -39,8 +39,7 @@ The required information can be referenced below. Unentered non-necessary inform
 ### Playlist Options
 Playlists can be created by going to <ins>*My Playlists > New Playlist+*</ins>. After creating a playlist, users can
  then go to <ins>*Library > Songs*</ins> for a list of all songs in the library by the order that they were added, or
- <ins>*Library > Search Library > Search by...*</ins> to search using a specified genre, artist name, duration
- *(truncated to the minute)*, etc.<br>
+ <ins>*Library > Search Library > Search by...*</ins> to search using a specified genre, artist name, titleZ, etc.<br>
 Once the desired song is found, it can be added to the playlist by clicking the three dots, and then selecting <ins>*Add
  to playlist > [Playlist name]*</ins>.
   

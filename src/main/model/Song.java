@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 public class Song { // could also make podcast subclass
     private String title;
     private String link;
@@ -12,7 +10,7 @@ public class Song { // could also make podcast subclass
     private int colour;
     private Boolean likedStatus;
 
-    // EFFECTS: construct an album with given name and link, everything else is unknown
+    // EFFECTS: construct an song with given name and link, everything else is unknown
     public Song(String title, String link) {
     }
 

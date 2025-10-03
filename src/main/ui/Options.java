@@ -27,9 +27,13 @@ public class Options {
         } else if (ckop("View playlists") || dop("p")) {
             longLine();
             playlistOptions();
-        } else if (ckop("konamicode")) {
+        } else if (ckop("konamicode") && !debugMode) {
             debugMode = true;
             print("Nice!");
+            longLine();
+        } else if (ckop("konamicode") && debugMode) {
+            print("Debug mode already activated.");
+            longLine();
         } else {
             notValid();
         }
@@ -46,11 +50,9 @@ public class Options {
 
         if (ckop("New Song+") || dop("n")) {
             print("TODO");
-        }
-        else if (ckop("Search Library") || dop("s")) {
+        } else if (ckop("Search Library") || dop("s")) {
             print("TODO");
-        }
-        else if (ckop("Back") || dop("b")) {
+        } else if (ckop("Back") || dop("b")) {
             backButton();
             startView();
         } else {
@@ -63,8 +65,6 @@ public class Options {
         print("New Playlist+");
         print("TODO");
     }
-
-
 
     // TEXT UTILITY FUNCTIONS
 

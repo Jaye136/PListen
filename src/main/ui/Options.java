@@ -17,7 +17,8 @@ public class Options {
     public void startView() {
         print("\nEnter all options exactly.");
         print("  > View library");
-        print("  > View playlists\n");
+        print("  > View playlists");
+        print("  > Play queue\n");
 
         select = userInput.nextLine();
 
@@ -27,6 +28,9 @@ public class Options {
         } else if (ckop("View playlists") || dop("p")) {
             longLine();
             playlistOptions();
+        } else if (ckop("Play queue") || dop("q")) {
+            longLine();
+            print("\nTODO");
         } else if (ckop("konamicode") && !debugMode) {
             debugMode = true;
             print("\nNice!");

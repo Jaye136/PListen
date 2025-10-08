@@ -11,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         library = new Library();
-        library.startLibrary();
         playHandler = new PlayHandler();
 
         Options optionsMenuLoad = new Options();

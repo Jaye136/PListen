@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import model.data.plain.Song;
@@ -17,14 +17,15 @@ public class PlaylistTest extends CollectionTest {
     void runBefore() {
         testCollection = new Playlist();
         forPlaylistMethods = new Playlist();
+        forPlaylistMethods.setName("playlist test");
         testSong = new Song("fresh beats", "linkpath");
         testSecondSong = new Song("mysterious tunes", "linkpath");
-        forPlaylistMethods.addSong(testSong);
-        forPlaylistMethods.addSong(testSecondSong);
     }
 
     @Test
-    public void massOpinionBoostOne() {
+    void massOpinionBoostOne() {
+        forPlaylistMethods.addSong(testSong);
+        forPlaylistMethods.addSong(testSecondSong);
         testSong.switchLikedStatus(true);
         forPlaylistMethods.massOpinion(true);
         List<Song> allLiked = forPlaylistMethods.getSongs();
@@ -34,7 +35,9 @@ public class PlaylistTest extends CollectionTest {
     }
 
     @Test
-    public void massOpinionBoostAll() {
+    void massOpinionBoostAll() {
+        forPlaylistMethods.addSong(testSong);
+        forPlaylistMethods.addSong(testSecondSong);
         forPlaylistMethods.massOpinion(true);
         List<Song> allLiked = forPlaylistMethods.getSongs();
         for (Song song:allLiked) {
@@ -43,7 +46,9 @@ public class PlaylistTest extends CollectionTest {
     }
 
     @Test
-    public void massOpinionDropOne() {
+    void massOpinionDropOne() {
+        forPlaylistMethods.addSong(testSong);
+        forPlaylistMethods.addSong(testSecondSong);
         testSecondSong.switchLikedStatus(true);
         forPlaylistMethods.massOpinion(false);
         List<Song> allNotLiked = forPlaylistMethods.getSongs();
@@ -53,26 +58,32 @@ public class PlaylistTest extends CollectionTest {
     }
 
     @Test
-    public void massOpinionDropAll() {
+    void massOpinionDropAll() {
+        forPlaylistMethods.addSong(testSong);
+        forPlaylistMethods.addSong(testSecondSong);
         testSong.switchLikedStatus(true);
         testSecondSong.switchLikedStatus(true);
         forPlaylistMethods.massOpinion(false);
         List<Song> allNotLiked = forPlaylistMethods.getSongs();
         for (Song song:allNotLiked) {
-            assertTrue(song.getLikedStatus());
+            assertFalse(song.getLikedStatus());
         }
     }
 
     @Test
-    public void playTimeNone() {
+    void playTimeNone() {
+        forPlaylistMethods.addSong(testSong);
+        forPlaylistMethods.addSong(testSecondSong);
         int duration = forPlaylistMethods.playlistDuration();
         assertEquals(0, duration);
     }
 
     @Test
-    public void playTimeMore() {
+    void playTimeMore() {
         testSong.setDuration(15);
         testSecondSong.setDuration(30);
+        forPlaylistMethods.addSong(testSong);
+        forPlaylistMethods.addSong(testSecondSong);
         int duration = forPlaylistMethods.playlistDuration();
         assertEquals(45, duration);
     }

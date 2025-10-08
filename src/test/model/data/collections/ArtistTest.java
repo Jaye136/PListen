@@ -55,7 +55,7 @@ public class ArtistTest extends CollectionTest {
         forArtistMethods.addAlbum(testAlbum);
         List<Album> whatAlbums = forArtistMethods.getAlbums();
         assertEquals(1, whatAlbums.size());
-        forArtistMethods.removeAlbum(testSecondAlbum);
+        forArtistMethods.removeAlbum(testAlbum);
         whatAlbums = forArtistMethods.getAlbums();
         assertEquals(0, whatAlbums.size());
     }

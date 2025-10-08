@@ -25,19 +25,29 @@ public class PlayHandlerTest {
     }
 
     @Test
+    void playQueueTester() {
+        playHandler.playSongNow(testSong);
+        playHandler.queueAddSong(testSecondSong);
+        testSecondSong.setLink("https://");
+        assertEquals(2, playHandler.getQueue().size());
+        assertEquals("BingBong!!", playHandler.playSongQueue());
+        assertEquals("BingBing!!", playHandler.playSongQueue());
+    }
+
+    @Test
     void testConstructor() {
-        Playlist queue = playHandler.getQueue();
-        List<Song> emptyQueue = queue.getSongs();
+        List<Song> queue = playHandler.getQueue();
+        List<Song> emptyQueue = queue;
         assertTrue(emptyQueue.isEmpty());
     }
 
     @Test
     void testPlaySongNow() {
         playHandler.playSongNow(testSong);
-        int queueSize = playHandler.getQueue().getSongs().size();
+        int queueSize = playHandler.getQueue().size();
         assertEquals(1, queueSize);
         playHandler.playSongNow(testSecondSong);
-        queueSize = playHandler.getQueue().getSongs().size();
+        queueSize = playHandler.getQueue().size();
         assertEquals(1, queueSize);
     }
 
@@ -47,12 +57,12 @@ public class PlayHandlerTest {
         songs.addSong(testSong);
         songs.addSong(testSecondSong);
         playHandler.playPlaylistNow(songs);
-        int queueSize = playHandler.getQueue().getSongs().size();
+        int queueSize = playHandler.getQueue().size();
         assertEquals(2, queueSize);
         songs.addSong(testSong);
         songs.addSong(testSecondSong);
         playHandler.playPlaylistNow(songs);
-        queueSize = playHandler.getQueue().getSongs().size();
+        queueSize = playHandler.getQueue().size();
         assertEquals(4, queueSize);
     }
 
@@ -60,16 +70,16 @@ public class PlayHandlerTest {
     void queueSongAtFront() {
         playHandler.nextAddSong(testSong);
         playHandler.nextAddSong(testSecondSong);
-        assertEquals(testSecondSong, playHandler.getQueue().getSongs().get(0));
-        assertEquals(testSong, playHandler.getQueue().getSongs().get(1));
+        assertEquals(testSecondSong, playHandler.getQueue().get(0));
+        assertEquals(testSong, playHandler.getQueue().get(1));
     }
 
     @Test
     void queueSongAtBack() {
         playHandler.queueAddSong(testSong);
         playHandler.queueAddSong(testSecondSong);
-        assertEquals(testSong, playHandler.getQueue().getSongs().get(0));
-        assertEquals(testSecondSong, playHandler.getQueue().getSongs().get(1));
+        assertEquals(testSong, playHandler.getQueue().get(0));
+        assertEquals(testSecondSong, playHandler.getQueue().get(1));
     }
 
     @Test
@@ -80,20 +90,20 @@ public class PlayHandlerTest {
         songs.addSong(testSong);
         songs.addSong(testSecondSong);
         playHandler.nextAddSongs(songs);
-        assertEquals(testSecondSong, playHandler.getQueue().getSongs().get(1));
-        assertEquals(songShouldBeLast, playHandler.getQueue().getSongs().get(2));
+        assertEquals(testSecondSong, playHandler.getQueue().get(1));
+        assertEquals(songShouldBeLast, playHandler.getQueue().get(2));
     }
 
     @Test
     void queuePlaylistAtBack() {
-        Song songShouldBeFirst = new Song("shldblst", "link lonk");
+        Song songShouldBeFirst = new Song("shldbfst", "link lonk");
         playHandler.nextAddSong(songShouldBeFirst);
         Playlist songs = new Playlist();
         songs.addSong(testSong);
         songs.addSong(testSecondSong);
-        playHandler.nextAddSongs(songs);
-        assertEquals(songShouldBeFirst, playHandler.getQueue().getSongs().get(0));
-        assertEquals(testSecondSong, playHandler.getQueue().getSongs().get(2));
+        playHandler.queueAddSongs(songs);
+        assertEquals(songShouldBeFirst, playHandler.getQueue().get(0));
+        assertEquals(testSecondSong, playHandler.getQueue().get(2));
     }
     
 }

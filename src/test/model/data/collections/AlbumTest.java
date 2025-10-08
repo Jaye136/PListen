@@ -26,14 +26,19 @@ public class AlbumTest extends PlaylistTest {
     void testConstructor() {
         assertEquals("test album", forAlbumMethods.getName());
         assertTrue(forAlbumMethods.getSongs().isEmpty());
-        assertEquals("unknown", forAlbumMethods.getContributor());
+        assertEquals("unknown", forAlbumMethods.getContributor().getName());
     }
 
     @Test
     void testSetAlbumContributor() {
-        assertEquals("unknown", forAlbumMethods.getContributor());
         forAlbumMethods.setContributor(testArtist);
-        assertEquals("john artist", forAlbumMethods.getContributor());
+        assertEquals(testArtist, forAlbumMethods.getContributor());
+        Artist differentArtist = new Artist("change artist");
+        forAlbumMethods.setContributor(differentArtist);
+        for (Album album:testArtist.getAlbums()) {
+            if (album == forAlbumMethods);
+            fail("album should be removed from old artist");
+        }
     }
 
 }

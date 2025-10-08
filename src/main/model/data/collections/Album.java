@@ -1,22 +1,32 @@
 package model.data.collections;
 
+import java.util.ArrayList;
+
+import model.data.plain.Song;
+
 public class Album extends Playlist {
 
     private Artist contributor;
 
     // EFFECTS: construct a new album with the given title, with no songs in it
     public Album(String title) {
+        this.name = title;
+        this.contributor = new Artist("unknown");
+        this.songs = new ArrayList<Song>();
     }
 
-    // REQUIRES: one of artist.getAlbums() == this
     // MODIFIES: this
-    // EFFECTS: set the given artist as the contributor
+    // EFFECTS: set the given artist as the contributor, remove this from
+    // the old artist, and add this to artist's albums
     public void setContributor(Artist contributor) {
+        this.contributor.removeAlbum(this);
+        this.contributor = contributor;
+        this.contributor.addAlbum(this);
     }
 
     // EFFECTS: getter
     public Artist getContributor() {
-        return null;
+        return contributor;
     }
 
 }

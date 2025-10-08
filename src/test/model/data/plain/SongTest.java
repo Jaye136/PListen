@@ -2,12 +2,12 @@ package model.data.plain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import model.data.collections.Album;
 import model.data.collections.Artist;
-import model.handlers.Library;
+import model.data.exceptions.SongNotFoundException;
 
 public class SongTest {
 
@@ -26,9 +26,9 @@ public class SongTest {
     void constructCorrect() {
         assertEquals("fresh beats", testSong.getTitle());
         assertEquals("linkpath", testSong.getLink());
-        assertEquals("unknown", testSong.getCreator());
-        assertEquals(Library.unknownAlbum, testSong.getAlbum());
-        assertEquals(Library.unknownArtist, testSong.getCreator());
+        assertEquals("unknown", testSong.getCreator().getName());
+        assertEquals("unknown", testSong.getAlbum().getName());
+        assertEquals("unknown", testSong.getCreator().getName());
         assertEquals(Genre.UNKNOWN, testSong.getSongGenre());
         assertEquals(0, testSong.getDuration());
         assertEquals(0xc3cdde, testSong.getCoverColour());
@@ -51,12 +51,26 @@ public class SongTest {
     void changeCreator() {
         testSong.setCreator(testArtist);
         assertEquals(testArtist, testSong.getCreator());
+        Artist differentArtist = new Artist("change artist");
+        testSong.setCreator(differentArtist);
+        try {
+            testArtist.searchSong("fresh beats");
+        } catch (SongNotFoundException e) {
+            System.out.println("song should be removed from old artist");
+        }
     }
 
     @Test
     void changeAlbum() {
         testSong.setAlbum(testAlbum);
         assertEquals(testAlbum, testSong.getAlbum());
+        Album differentAlbum = new Album("change album");
+        testSong.setAlbum(differentAlbum);
+        try {
+            testAlbum.searchSong("fresh beats");
+        } catch (SongNotFoundException e) {
+            System.out.println("song should be removed from old album");
+        }
     }
 
     @Test
@@ -74,7 +88,7 @@ public class SongTest {
     @Test
     void changeCoverColour() {
         testSong.setColour(0x000000);
-        assertEquals(000000, testSong.getCoverColour());
+        assertEquals(0x000000, testSong.getCoverColour());
     }
 
     @Test

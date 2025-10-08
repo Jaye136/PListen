@@ -6,10 +6,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
 
 public abstract class CollectionTest {
-    
+
     protected Collection testCollection;
     protected Song testSong;
     protected Song testSecondSong;
@@ -43,7 +44,7 @@ public abstract class CollectionTest {
         testCollection.addSong(testSong);
         List<Song> whatSongs = testCollection.getSongs();
         assertEquals(1, whatSongs.size());
-        testCollection.removeSong(testSecondSong);
+        testCollection.removeSong(testSong);
         whatSongs = testCollection.getSongs();
         assertEquals(0, whatSongs.size());
     }
@@ -64,21 +65,24 @@ public abstract class CollectionTest {
     }
 
     @Test
-    public void checkGetSong() {
-        testCollection.addSong(testSong);
-        Album albumTest = new Album("album test");
-        albumTest.addSong(testSong);
-        assertEquals(testCollection.searchSong("fresh beats"), albumTest.searchSong("fresh beats"));
-        assertEquals(testCollection.searchSong("mysterious tunes"), albumTest.searchSong("mysterious tunes"));
+    public void checkGetSongExist() {
+        testCollection.addSong(testSecondSong);
+        try {
+            testCollection.searchSong("mysterious tunes");
+        } catch (SongNotFoundException e) {
+            fail("Song does not exist");
+        }
     }
 
     @Test
-    public void checkGetSongOnlyOne() {
+    public void checkGetSongNull() {
         testCollection.addSong(testSecondSong);
-        Album albumTest = new Album("album test");
-        albumTest.addSong(testSong);
-        assertNotEquals(testCollection.searchSong("fresh beats"), albumTest.searchSong("fresh beats"));
-        assertNotEquals(testCollection.searchSong("mysterious tunes"), albumTest.searchSong("mysterious tunes"));
+        try {
+            testCollection.searchSong("fresh beats");
+            fail("how did we get here?");
+        } catch (SongNotFoundException e) {
+            System.out.println("task successfully failed");
+        }
     }
 
 }

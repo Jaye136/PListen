@@ -2,6 +2,7 @@ package model.data.collections;
 
 import java.util.List;
 
+import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
 
 public abstract class Collection {
@@ -10,45 +11,55 @@ public abstract class Collection {
     protected List<Song> songs;
     private Song lastSearchedSong;
 
-    // EFFECTS: return the song found using canGetSongFromCollection, else do
-    // nothing
-    public Song searchSong(String title) {
-        return null;
+    // EFFECTS: return the song found using canGetSongFromCollection
+    // otherwise, if cannot find song, throw SongNotFoundException
+    public Song searchSong(String title) throws SongNotFoundException {
+        if (canGetSongFromCollection(title)) {
+            return lastSearchedSong;
+        } else {
+            throw new SongNotFoundException();
+        }
     }
 
     // REQUIRES: collection has no other songs with the same title
     // EFFECTS: search collection for the first song with the given title. If
     // true, song exists, otherwise fail
-    private Boolean canGetSongFromCollection() {
+    private Boolean canGetSongFromCollection(String title) {
+        for (Song inCollect : songs) {
+            if (inCollect.getTitle() == title) {
+                lastSearchedSong = inCollect;
+                return true;
+            }
+        }
         return false;
     }
 
-    // REQUIRES: for Album && Artist, song.collection() == collection
-    // for playlists, none (assumes nothing)
     // MODIFIES: this
     // EFFECTS: add the given song to song list
     public void addSong(Song song) {
+        songs.add(song);
     }
 
-    // REQUIRES: song list of collection is not empty
     // MODIFIES: this
     // EFFECTS: remove the given song from song list
     public void removeSong(Song song) {
+        songs.remove(song);
     }
 
     // MODIFIES: this
     // EFFECTS: setter
     public void setName(String name) {
+        this.name = name;
     }
 
     // EFFECTS: getter
     public String getName() {
-        return "";
+        return name;
     }
 
     // EFFECTS: getter
     public List<Song> getSongs() {
-        return null;
+        return songs;
     }
 
 }

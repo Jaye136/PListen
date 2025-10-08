@@ -1,6 +1,9 @@
 package model.data.collections;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import model.data.plain.Song;
 
 public class Artist extends Collection {
     
@@ -8,23 +11,26 @@ public class Artist extends Collection {
 
     // EFFECTS: construct a new artist with the given name, with no albums or songs yet
     public Artist(String name) {
+        this.name = name;
+        this.songs = new ArrayList<Song>();
+        this.albums = new ArrayList<Album>();
     }
 
-    // REQUIRES: one of album.getArtists() == this
     // MODIFIES: this
     // EFFECTS: add the given album to album list
     public void addAlbum(Album album) {
+        albums.add(album);
     }
 
-    // REQUIRES: album list is not empty
     // MODIFIES: this
     // EFFECTS: remove the given album from album list
     public void removeAlbum(Album album) {
+        albums.remove(album);
     }
 
     // EFFECTS: getter
     public List<Album> getAlbums() {
-        return null;
+        return albums;
     }
     
 }

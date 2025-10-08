@@ -1,12 +1,13 @@
-package model;
+package model.data.collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import model.data.plain.Song;
 
 public class ArtistTest extends CollectionTest {
 

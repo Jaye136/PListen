@@ -1,4 +1,7 @@
-package model;
+package model.data.plain;
+
+import model.data.collections.Album;
+import model.data.collections.Artist;
 
 public class Song { // could also make podcast subclass
     private String title;
@@ -52,7 +55,7 @@ public class Song { // could also make podcast subclass
     }
 
     // MODIFIES: this
-    // EFFECTS: switch the liked status of the song
+    // EFFECTS: switch the liked status of the song to given boolean
     public void switchLikedStatus(Boolean likedStatus) {
     }
 

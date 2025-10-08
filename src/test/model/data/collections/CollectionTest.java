@@ -1,26 +1,27 @@
-package model;
+package model.data.collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import model.data.plain.Song;
+
 public abstract class CollectionTest {
+    
     protected Collection testCollection;
     protected Song testSong;
     protected Song testSecondSong;
 
     @Test
-    void nameChange() {
+    public void nameChange() {
         testCollection.setName("testCollection");
         assertEquals("testCollection", testCollection.getName());
     }
 
     @Test
-    void addOneSong() {
+    public void addOneSong() {
         testCollection.addSong(testSong);
         List<Song> whatSongs = testCollection.getSongs();
         assertEquals(1, whatSongs.size());
@@ -28,7 +29,7 @@ public abstract class CollectionTest {
     }
 
     @Test
-    void addTwoSongs() {
+    public void addTwoSongs() {
         testCollection.addSong(testSong);
         testCollection.addSong(testSecondSong);
         List<Song> whatSongs = testCollection.getSongs();
@@ -38,7 +39,7 @@ public abstract class CollectionTest {
     }
 
     @Test
-    void removeOneSong() {
+    public void removeOneSong() {
         testCollection.addSong(testSong);
         List<Song> whatSongs = testCollection.getSongs();
         assertEquals(1, whatSongs.size());
@@ -48,7 +49,7 @@ public abstract class CollectionTest {
     }
 
     @Test
-    void removeTwoSongs() {
+    public void removeTwoSongs() {
         testCollection.addSong(testSong);
         testCollection.addSong(testSecondSong);
         List<Song> whatSongs = testCollection.getSongs();
@@ -63,7 +64,7 @@ public abstract class CollectionTest {
     }
 
     @Test
-    void checkGetSong() {
+    public void checkGetSong() {
         testCollection.addSong(testSong);
         Album albumTest = new Album("album test");
         albumTest.addSong(testSong);
@@ -72,7 +73,7 @@ public abstract class CollectionTest {
     }
 
     @Test
-    void checkGetSongOnlyOne() {
+    public void checkGetSongOnlyOne() {
         testCollection.addSong(testSecondSong);
         Album albumTest = new Album("album test");
         albumTest.addSong(testSong);

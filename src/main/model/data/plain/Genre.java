@@ -1,4 +1,4 @@
-package model;
+package model.data.plain;
 
 public enum Genre { // 'enum' learned/referenced from LibrarySystem project on EdX
     UNKNOWN,

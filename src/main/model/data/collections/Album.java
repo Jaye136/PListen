@@ -1,6 +1,6 @@
-package model;
+package model.data.collections;
 
-public class Album extends Collection {
+public class Album extends Playlist {
 
     private Artist contributor;
 
@@ -18,4 +18,5 @@ public class Album extends Collection {
     public Artist getContributor() {
         return null;
     }
+
 }

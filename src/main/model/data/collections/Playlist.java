@@ -1,13 +1,10 @@
-package model;
-
-import java.util.List;
+package model.data.collections;
 
 public class Playlist extends Collection {
-    private String title;
-    private List<Song> songs;
 
-    // EFFECTS: construct a playlist with the given name with no songs yet
-    public Playlist(String title) {
+    // REQUIRES: playlist.setName() is the next line
+    // EFFECTS: construct a playlist with with no songs yet
+    public Playlist() {
     }
 
     // MODIFIES: song in this
@@ -21,9 +18,5 @@ public class Playlist extends Collection {
     public int playlistDuration() {
         return 0;
     }
-
-    // EFFECTS: list all songs in the playlist
-    public String whatSongs() {
-        return "";
-    }
+    
 }

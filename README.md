@@ -46,7 +46,7 @@ Once the desired song is found, it can be added to the playlist by clicking the 
   
 ### Queue Options
 Songs can be played by clicking on them in the library, or by playing a playlist. When selecting songs not in a
- playlist, the next song will be picked randomly from the library. Users may also click on the three dots next to a
+ playlist, the queue will stop after playing the single selected song. Users may also click on the three dots next to a
  song, then click <ins>*Add to queue*</ins>, which will put the song at the back of a temporary queue <sup>2</sup>, or
  click <ins>*Add to next*</ins>, which will put the song at the front of a temporary queue <sup>2</sup>.
   
@@ -119,6 +119,6 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
  Includes the information listed [here](#storing-songs).)<br>
   
 **Future plans for phase 2 (user data saving)**
-- Like or unlike a song
+- Like or unlike a song (as fixed state)
 - Add new songs to the default library
 - Add songs to a new or existing playlist

@@ -1,12 +1,13 @@
-package model;
+package model.data.collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AlbumTest extends CollectionTest {
+import model.data.plain.Song;
+
+public class AlbumTest extends PlaylistTest {
 
     private Album forAlbumMethods;
     private Artist testArtist;
@@ -14,6 +15,7 @@ public class AlbumTest extends CollectionTest {
     @BeforeEach
     void runBefore() {
         testCollection = new Album("abstract tester album");
+        forPlaylistMethods = new Album("abstract tester album");
         forAlbumMethods = new Album("test album");
         testArtist = new Artist("john artist");
         testSong = new Song("fresh beats", "linkpath");
@@ -29,7 +31,9 @@ public class AlbumTest extends CollectionTest {
 
     @Test
     void testSetAlbumContributor() {
-        forAlbumMethods.setContributor(testArtist);;
+        assertEquals("unknown", forAlbumMethods.getContributor());
+        forAlbumMethods.setContributor(testArtist);
+        assertEquals("john artist", forAlbumMethods.getContributor());
     }
 
 }

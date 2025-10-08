@@ -15,9 +15,9 @@ public class Options {
 
     // EFFECTS: welcome user, show available options
     public void startView() {
-        print("Enter all options exactly.");
+        print("\nEnter all options exactly.");
         print("  > View library");
-        print("  > View playlists");
+        print("  > View playlists\n");
 
         select = userInput.nextLine();
 
@@ -29,10 +29,10 @@ public class Options {
             playlistOptions();
         } else if (ckop("konamicode") && !debugMode) {
             debugMode = true;
-            print("Nice!");
+            print("\nNice!");
             longLine();
         } else if (ckop("konamicode") && debugMode) {
-            print("Debug mode already activated.");
+            print("\nDebug mode already activated.");
             longLine();
         } else {
             notValid();
@@ -41,29 +41,29 @@ public class Options {
 
     // EFFECTS: show options in the library menu
     private void libraryOptions() {
-        print("Enter all options exactly.");
+        print("\nEnter all options exactly.");
         print("  > New Song+");
         print("  > Search Library");
-        print("  > Back");
+        print("  > Back\n");
 
         select = userInput.nextLine();
 
         if (ckop("New Song+") || dop("n")) {
-            print("TODO");
+            print("\nTODO");
         } else if (ckop("Search Library") || dop("s")) {
-            print("TODO");
+            print("\nTODO");
         } else if (ckop("Back") || dop("b")) {
             backButton();
             startView();
         } else {
             notValid();
-            libraryOptions();
         }
+        libraryOptions();
     }
 
     private void playlistOptions() {
-        print("New Playlist+");
-        print("TODO");
+        print("\nNew Playlist+");
+        print("TODO\n");
     }
 
     // TEXT UTILITY FUNCTIONS
@@ -85,18 +85,18 @@ public class Options {
 
     // EFFECTS: shortcut for formatting
     private void longLine() {
-        print("----------------------");
+        print("\n----------------------");
     }
 
     // EFFECTS: shortcut for invalid user input
     private void notValid() {
-        print("Not a valid option!");
+        print("\nNot a valid option!");
         longLine();
     }
 
     // EFFECTS: shortcut to handle back button being pressed
     private void backButton() {
-        print("Heading back to the previous menu...");
+        print("\nHeading back to the previous menu...");
         longLine();
     }
 }

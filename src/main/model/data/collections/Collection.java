@@ -1,12 +1,14 @@
-package model;
+package model.data.collections;
 
 import java.util.List;
+
+import model.data.plain.Song;
 
 public abstract class Collection {
 
     protected String name;
     protected List<Song> songs;
-    protected Song lastSearchedSong;
+    private Song lastSearchedSong;
 
     // EFFECTS: return the song found using canGetSongFromCollection, else do
     // nothing

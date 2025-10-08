@@ -1,4 +1,4 @@
-package model;
+package model.data.collections;
 
 import java.util.List;
 

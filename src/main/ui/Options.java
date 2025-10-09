@@ -18,11 +18,8 @@ public class Options {
 
     // EFFECTS: welcome user, show available options
     public void startView() {
-        print("\nEnter all options exactly.");
-        print("  > View library");
-        print("  > View playlists");
-        print("  > Queue Options");
-        print("  > Quit program\n");
+
+        startViewDisplay();
 
         select = userInput.nextLine();
 
@@ -42,13 +39,18 @@ public class Options {
             debugMode = true;
             print("\nNice!");
             longLine();
-        } else if (ckop("konamicode") && debugMode) {
-            print("\nDebug mode already activated.");
-            longLine();
         } else {
             notValid();
         }
         startView();
+    }
+
+    private void startViewDisplay() {
+        print("\nEnter all options exactly.");
+        print("  > View library");
+        print("  > View playlists");
+        print("  > Queue Options");
+        print("  > Quit program\n");
     }
 
     // EFFECTS: show options in the library menu
@@ -111,7 +113,7 @@ public class Options {
             libraryOptions();
         } else {
             try {
-                songInfoDisplay(Main.library.searchSong(select));
+                songInfoOptions(Main.library.searchSong(select));
             } catch (SongNotFoundException e) {
                 notValid();
             }
@@ -119,19 +121,9 @@ public class Options {
         viewSongs();
     }
 
-    private void songInfoDisplay(Song song) {
-        print("\nTitle: " + song.getTitle());
-        print("Sourced from: " + song.getLink());
-        print("Created by: " + song.getCreator().getName());
-        print("In album: " + song.getAlbum().getName());
-        print("In genre: " + song.getSongGenre().toString());
-        print("Song duration: " + song.getDuration());
-        print("Liked song?: " + song.getLikedStatus().toString());
+    private void songInfoOptions(Song song) {
 
-        print("\nEnter all options exactly.");
-        print("  > Play next");
-        print("  > Add to queue");
-        print("  > Back\n");
+        songInfoDisplay(song);
 
         select = userInput.nextLine();
 
@@ -150,7 +142,22 @@ public class Options {
         } else {
             notValid();
         }
-        songInfoDisplay(song);
+        songInfoOptions(song);
+    }
+
+    private void songInfoDisplay(Song song) {
+        print("\nTitle: " + song.getTitle());
+        print("Sourced from: " + song.getLink());
+        print("Created by: " + song.getCreator().getName());
+        print("In album: " + song.getAlbum().getName());
+        print("In genre: " + song.getSongGenre().toString());
+        print("Song duration: " + song.getDuration());
+        print("Liked song?: " + song.getLikedStatus().toString());
+
+        print("\nEnter all options exactly.");
+        print("  > Play next");
+        print("  > Add to queue");
+        print("  > Back\n");
     }
 
     private void queueOptions() {

@@ -37,9 +37,10 @@ public class AlbumTest extends PlaylistTest {
         assertEquals(testArtist, forAlbumMethods.getContributor());
         Artist differentArtist = new Artist("change artist");
         forAlbumMethods.setContributor(differentArtist);
-        for (Album album:testArtist.getAlbums()) {
-            if (album == forAlbumMethods);
-            fail("album should be removed from old artist");
+        for (Album album : testArtist.getAlbums()) {
+            if (album == forAlbumMethods) {
+                fail("album should be removed from old artist");
+            }
         }
     }
 

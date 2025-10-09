@@ -57,17 +57,17 @@ public class Library {
         song3.switchLikedStatus(true);
         addToLibrary(song3);
 
-        Song song4 = new Song("nice bars", "https://spotthefy.moc");
-        song4.setAlbum(songsOfMovement);
-        song4.setGenre(Genre.HIPRAP);
-        song4.setColour(0xFFFFFF);
-        addToLibrary(song4);
+        // Song song4 = new Song("nice bars", "https://spotthefy.moc");
+        // song4.setAlbum(songsOfMovement);
+        // song4.setGenre(Genre.HIPRAP);
+        // song4.setColour(0xFFFFFF);
+        // addToLibrary(song4);
 
-        Song song5 = new Song("jazzy jams", "https://tubeyou.moc");
-        song5.setAlbum(songsOfSlow);
-        song5.setGenre(Genre.JAZZ);
-        song5.setDuration(80);
-        addToLibrary(song5);
+        // Song song5 = new Song("jazzy jams", "https://tubeyou.moc");
+        // song5.setAlbum(songsOfSlow);
+        // song5.setGenre(Genre.JAZZ);
+        // song5.setDuration(80);
+        // addToLibrary(song5);
     }
 
     // MODIFIES: this

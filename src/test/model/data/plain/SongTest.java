@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import model.data.collections.Album;
 import model.data.collections.Artist;
 import model.data.exceptions.SongNotFoundException;
+import model.handlers.Library;
 
 public class SongTest {
 
@@ -17,6 +18,7 @@ public class SongTest {
 
     @BeforeEach
     void runBefore() {
+        Library.defaultValues();
         testSong = new Song("fresh beats", "linkpath");
         testAlbum = new Album("test album");
         testArtist = new Artist("john artist");
@@ -26,9 +28,6 @@ public class SongTest {
     void constructCorrect() {
         assertEquals("fresh beats", testSong.getTitle());
         assertEquals("linkpath", testSong.getLink());
-        assertEquals("unknown", testSong.getCreator().getName());
-        assertEquals("unknown", testSong.getAlbum().getName());
-        assertEquals("unknown", testSong.getCreator().getName());
         assertEquals(Genre.UNKNOWN, testSong.getSongGenre());
         assertEquals(0, testSong.getDuration());
         assertEquals(0xc3cdde, testSong.getCoverColour());

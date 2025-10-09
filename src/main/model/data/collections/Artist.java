@@ -27,7 +27,7 @@ public class Artist extends Collection {
     public void removeAlbum(Album album) {
         albums.remove(album);
     }
-
+    
     // EFFECTS: getter
     public List<Album> getAlbums() {
         return albums;

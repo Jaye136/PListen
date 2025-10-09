@@ -85,6 +85,10 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [New Playlist+]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [My Playlists]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of songs]<br>
+➥ [Queue Options]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [Play queue]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [View queue]<br>
+➥ [Quit Program]<br>
   
   
 ### About the Program
@@ -115,8 +119,8 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
   
 **Other user stories (without data saving)**
 > *Construct a new song* for this instance of the program (not saved to the library)<br>
-> *View the available information* for any song (either user-added, or default.
- Includes the information listed [here](#storing-songs).)<br>
+> *View basic information* for any song (either user-added, or default.
+ Includes some of the information listed [here](#storing-songs).)<br>
   
 **Future plans for phase 2 (user data saving)**
 - Like or unlike a song (as fixed state)

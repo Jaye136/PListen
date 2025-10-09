@@ -3,6 +3,7 @@ package model.data.collections;
 import java.util.ArrayList;
 
 import model.data.plain.Song;
+import model.handlers.Library;
 
 public class Album extends Playlist {
 
@@ -11,7 +12,7 @@ public class Album extends Playlist {
     // EFFECTS: construct a new album with the given title, with no songs in it
     public Album(String title) {
         this.name = title;
-        this.contributor = new Artist("unknown");
+        this.contributor = Library.unknownArtist;
         this.songs = new ArrayList<Song>();
     }
 
@@ -19,7 +20,9 @@ public class Album extends Playlist {
     // EFFECTS: set the given artist as the contributor, remove this from
     // the old artist, and add this to artist's albums
     public void setContributor(Artist contributor) {
-        this.contributor.removeAlbum(this);
+        if (this.contributor != Library.unknownArtist) {
+            this.contributor.removeAlbum(this);
+        }
         this.contributor = contributor;
         this.contributor.addAlbum(this);
     }

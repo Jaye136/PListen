@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.data.plain.Song;
+import model.handlers.Library;
 
 public class AlbumTest extends PlaylistTest {
 
@@ -14,6 +15,7 @@ public class AlbumTest extends PlaylistTest {
 
     @BeforeEach
     void runBefore() {
+        Library.defaultValues();
         testCollection = new Album("abstract tester album");
         forPlaylistMethods = new Album("abstract tester album");
         forAlbumMethods = new Album("test album");

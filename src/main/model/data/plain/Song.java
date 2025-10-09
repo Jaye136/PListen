@@ -2,6 +2,7 @@ package model.data.plain;
 
 import model.data.collections.Album;
 import model.data.collections.Artist;
+import model.handlers.Library;
 
 public class Song { // could also make podcast subclass
     private String title;
@@ -13,12 +14,14 @@ public class Song { // could also make podcast subclass
     private int colour;
     private Boolean likedStatus;
 
-    // EFFECTS: construct an song with given name and link, everything else is unknown
+    // EFFECTS: construct an song with given name and link, everything else is
+    // unknown. Callable for testing purposes only. For other uses, please use
+    // Library.addSong(String title, String link) method.
     public Song(String title, String link) {
         this.title = title;
         this.link = link;
-        this.creator = new Artist("unknown");
-        this.album = new Album("unknown");
+        this.creator = Library.unknownArtist;
+        this.album = Library.unknownAlbum;
         this.songGenre = Genre.UNKNOWN;
         this.durationInSeconds = 0;
         this.colour = 0xc3cdde;
@@ -41,7 +44,9 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the artist for this song, remove this song from the old artist,
     // and add this song to the artist's created songs
     public void setCreator(Artist creator) {
-        this.creator.removeSong(this);
+        if (this.creator != Library.unknownArtist) {
+            this.creator.removeSong(this);
+        }
         this.creator = creator;
         this.creator.addSong(this);
     }
@@ -50,7 +55,9 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the album for this song, remove this song from the old album,
     // and add this song to the album's songs
     public void setAlbum(Album album) {
-        this.album.removeSong(this);
+        if (this.album != Library.unknownAlbum) {
+            this.album.removeSong(this);
+        }
         this.album = album;
         this.creator.addSong(this);
     }
@@ -83,17 +90,17 @@ public class Song { // could also make podcast subclass
     public String getTitle() {
         return title;
     }
-    
+
     // EFFECTS: getter
     public String getLink() {
         return link;
     }
-    
+
     // EFFECTS: getter
     public Artist getCreator() {
         return creator;
     }
-    
+
     // EFFECTS: getter
     public Album getAlbum() {
         return album;

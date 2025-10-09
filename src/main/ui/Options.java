@@ -2,6 +2,9 @@ package ui;
 
 import java.util.Scanner;
 
+import model.data.exceptions.SongNotFoundException;
+import model.data.plain.Song;
+
 public class Options {
 
     private String select;
@@ -18,7 +21,8 @@ public class Options {
         print("\nEnter all options exactly.");
         print("  > View library");
         print("  > View playlists");
-        print("  > Play queue\n");
+        print("  > Queue Options");
+        print("  > Quit program\n");
 
         select = userInput.nextLine();
 
@@ -28,9 +32,12 @@ public class Options {
         } else if (ckop("View playlists") || dop("p")) {
             longLine();
             playlistOptions();
-        } else if (ckop("Play queue") || dop("q")) {
+        } else if (ckop("Queue Options") || dop("q")) {
             longLine();
-            print("\nTODO");
+            queueOptions();
+        } else if (ckop("Quit Program") || dop("qq")) {
+            longLine();
+            Main.undecided = false;
         } else if (ckop("konamicode") && !debugMode) {
             debugMode = true;
             print("\nNice!");
@@ -41,6 +48,7 @@ public class Options {
         } else {
             notValid();
         }
+        startView();
     }
 
     // EFFECTS: show options in the library menu
@@ -48,14 +56,19 @@ public class Options {
         print("\nEnter all options exactly.");
         print("  > New Song+");
         print("  > Search Library");
+        print("  > List of Songs");
         print("  > Back\n");
 
         select = userInput.nextLine();
 
         if (ckop("New Song+") || dop("n")) {
-            print("\nTODO");
+            longLine();
+            newSongMenu();
         } else if (ckop("Search Library") || dop("s")) {
             print("\nTODO");
+        } else if (ckop("List of Songs") || dop("l")) {
+            longLine();
+            viewSongs();
         } else if (ckop("Back") || dop("b")) {
             backButton();
             startView();
@@ -68,6 +81,117 @@ public class Options {
     private void playlistOptions() {
         print("\nNew Playlist+");
         print("TODO\n");
+    }
+
+    private void newSongMenu() {
+        print("\nEnter the name of your song\n");
+        String title = userInput.nextLine();
+
+        print("\nEnter the link of your song\n");
+        String link = userInput.nextLine();
+
+        Main.library.addToLibrary(title, link);
+
+        print("Added succesfully!");
+        longLine();
+        libraryOptions();
+    }
+
+    private void viewSongs() {
+        for (Song song : Main.library.getSongLibrary()) {
+            print(song.getTitle() + " by " + song.getCreator().getName() + " || " + song.getDuration() + " seconds");
+        }
+        print("\nEnter the index of the song to add it to the queue.");
+        print("  > Back\n");
+
+        select = userInput.nextLine();
+
+        if (ckop("Back") || dop("b")) {
+            backButton();
+            libraryOptions();
+        } else {
+            try {
+                songInfoDisplay(Main.library.searchSong(select));
+            } catch (SongNotFoundException e) {
+                notValid();
+            }
+        }
+        viewSongs();
+    }
+
+    private void songInfoDisplay(Song song) {
+        print("\nTitle: " + song.getTitle());
+        print("Sourced from: " + song.getLink());
+        print("Created by: " + song.getCreator().getName());
+        print("In album: " + song.getAlbum().getName());
+        print("In genre: " + song.getSongGenre().toString());
+        print("Song duration: " + song.getDuration());
+        print("Liked song?: " + song.getLikedStatus().toString());
+
+        print("\nEnter all options exactly.");
+        print("  > Play next");
+        print("  > Add to queue");
+        print("  > Back\n");
+
+        select = userInput.nextLine();
+
+        if (ckop("Play next") || dop("n")) {
+            Main.playHandler.nextAddSong(song);
+            print("\nSuccessfully added to queue!");
+            longLine();
+            viewSongs();
+        } else if (ckop("Add to queue") || dop("a")) {
+            Main.playHandler.queueAddSong(song);
+            longLine();
+            print("\nSuccessfully added to queue!");
+        } else if (ckop("Back") || dop("b")) {
+            backButton();
+            viewSongs();
+        } else {
+            notValid();
+        }
+        songInfoDisplay(song);
+    }
+
+    private void queueOptions() {
+        print("\nEnter all options exactly.");
+        print("  > Play queue");
+        print("  > View queue");
+        print("  > Back\n");
+
+        select = userInput.nextLine();
+
+        if (ckop("Play queue") || dop("p")) {
+            print("\nTODO");
+        } else if (ckop("View queue") || dop("v")) {
+            viewSongsQueue();
+        } else if (ckop("Back") || dop("b")) {
+            backButton();
+            startView();
+        } else {
+            notValid();
+        }
+        queueOptions();
+    }
+
+    private void viewSongsQueue() {
+        if (Main.playHandler.getQueue().isEmpty()) {
+            print("No songs in the queue");
+        } else {
+            for (Song song : Main.playHandler.getQueue()) {
+                print(song.getTitle() + " by " + song.getCreator().getName() + " || " + song.getDuration()
+                        + " seconds");
+            }
+        }
+        print("\n  > Back\n");
+
+        select = userInput.nextLine();
+
+        if (ckop("Back") || dop("b")) {
+            backButton();
+            queueOptions();
+        }
+        viewSongsQueue();
     }
 
     // TEXT UTILITY FUNCTIONS

@@ -10,6 +10,7 @@ public class PlayHandler extends Playlist {
 
     private List<Song> queue;
 
+    // EFFECTS: instantiates new PlayHandler
     public void start() {
         queue = new ArrayList<Song>();
         this.songs = queue;
@@ -41,7 +42,6 @@ public class PlayHandler extends Playlist {
         queue = new ArrayList<Song>();
         this.songs = queue;
         queue.add(song);
-
     }
 
     // MODIFIES: this

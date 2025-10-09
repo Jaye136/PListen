@@ -26,7 +26,7 @@ public abstract class Collection {
     // true, song exists, otherwise fail
     private Boolean canGetSongFromCollection(String title) {
         for (Song inCollect : songs) {
-            if (inCollect.getTitle() == title) {
+            if (inCollect.getTitle().equals(title)) {
                 lastSearchedSong = inCollect;
                 return true;
             }

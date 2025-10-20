@@ -20,8 +20,8 @@ public class Song { // could also make podcast subclass
     public Song(String title, String link) {
         this.title = title;
         this.link = link;
-        this.creator = Library.unknownArtist;
-        this.album = Library.unknownAlbum;
+        this.creator = Library.getUnknownArtist();
+        this.album = Library.getUnknownAlbum();
         this.songGenre = Genre.UNKNOWN;
         this.durationInSeconds = 0;
         this.colour = 0xc3cdde;
@@ -44,7 +44,7 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the artist for this song, remove this song from the old artist,
     // and add this song to the artist's created songs
     public void setCreator(Artist creator) {
-        if (this.creator != Library.unknownArtist) {
+        if (this.creator != Library.getUnknownArtist()) {
             this.creator.removeSong(this);
         }
         this.creator = creator;
@@ -55,7 +55,7 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the album for this song, remove this song from the old album,
     // and add this song to the album's songs
     public void setAlbum(Album album) {
-        if (this.album != Library.unknownAlbum) {
+        if (this.album != Library.getUnknownAlbum()) {
             this.album.removeSong(this);
         }
         this.album = album;

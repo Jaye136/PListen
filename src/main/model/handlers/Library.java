@@ -9,8 +9,8 @@ import model.data.plain.*;
 
 public class Library {
     private List<Song> songLibrary;
-    public static Artist unknownArtist;
-    public static Album unknownAlbum;
+    private static Artist unknownArtist;
+    private static Album unknownAlbum;
     private Song lastSearchedSong;
 
     // EFFECTS: initialise the default library
@@ -25,6 +25,16 @@ public class Library {
     public static void defaultValues() {
         unknownArtist = new Artist("unknown");
         unknownAlbum = new Album("unknown");
+    }
+
+    // EFFECTS: getter for default/unknown artist
+    public static Artist getUnknownArtist() {
+        return unknownArtist;
+    }
+
+    // EFFECTS: getter for default/unknown album
+    public static Album getUnknownAlbum() {
+        return unknownAlbum;
     }
 
     // MODIFIES: this

@@ -12,7 +12,7 @@ public class Album extends Playlist {
     // EFFECTS: construct a new album with the given title, with no songs in it
     public Album(String title) {
         this.name = title;
-        this.contributor = Library.unknownArtist;
+        this.contributor = Library.getUnknownArtist();
         this.songs = new ArrayList<Song>();
     }
 
@@ -20,7 +20,7 @@ public class Album extends Playlist {
     // EFFECTS: set the given artist as the contributor, remove this from
     // the old artist, and add this to artist's albums
     public void setContributor(Artist contributor) {
-        if (this.contributor != Library.unknownArtist) {
+        if (this.contributor != Library.getUnknownArtist()) {
             this.contributor.removeAlbum(this);
         }
         this.contributor = contributor;

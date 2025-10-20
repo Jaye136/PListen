@@ -6,8 +6,8 @@ import model.handlers.PlayHandler;
 public class Main {
 
     static Boolean undecided;
-    public static Library library;
-    public static PlayHandler playHandler;
+    static Library library;
+    static PlayHandler playHandler;
 
     public static void main(String[] args) {
         library = new Library();

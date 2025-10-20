@@ -42,7 +42,6 @@ public class Options {
         } else {
             notValid();
         }
-        startView();
     }
 
     private void startViewDisplay() {

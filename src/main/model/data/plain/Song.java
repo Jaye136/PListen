@@ -4,6 +4,33 @@ import model.data.collections.Album;
 import model.data.collections.Artist;
 import model.handlers.Library;
 
+// CLASS DOCUMENTATION: a data type detailing information about a Song.
+// The song has a variety of information, but only the title and link
+// are necessary to instantiate it (as that would be the minimum needed
+// in a functioning version of this program. A link/filepath to access
+// the song, and a name to search for the song in a Collection/in the
+// Library). Any other values are default.
+
+// DEFAULT VALUES:
+// The Song's default Album and Artist are the objects instantiated
+// in the Library class (otherwise every time a song was made, it would
+// create a new Artist and Album with the names 'unknown'). This is a
+// special state of the Song, as while it has the values of unknownArtist
+// and unknownAlbum, unknownArtist and unknownAlbum do not have this object
+// as part of their song lists. (Songs cannot be searched for using unknown
+// information).
+
+// DEFAULT -> NON-DEFAULT SETTING:
+// When the Song is given an actual Artis/Album to set, it adds itself
+// to the Artist/Album Collections' song list (this is why these
+// Collection classes were referred to as auto-managed).
+
+// NON-DEFAULT -> NON-DEFAULT SETTING:
+// When the Song is given an actual Artist/Album while it already is owned
+// by a different actual Artist/Album, it removes itself from its old
+// Artist/Album (auto-managed) and adds itself to the new Collection's
+// song list.
+
 public class Song { // could also make podcast subclass
     private String title;
     private String link;

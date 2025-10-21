@@ -5,6 +5,9 @@ import java.util.List;
 
 import model.data.plain.Song;
 
+// CLASS DOCUMENT: a type of auto-managed Collection that additionally has
+// a list of Albums where this object is the creator.
+
 public class Artist extends Collection {
     
     private List<Album> albums;

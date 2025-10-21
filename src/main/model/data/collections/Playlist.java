@@ -4,11 +4,21 @@ import java.util.ArrayList;
 
 import model.data.plain.Song;
 
+// CLASS DOCUMENT: A special type of Collection that is intended
+// to be user-managed. It can do mass-actions such as liking/unliking
+// all Songs inside of it, and can display additional information such
+// as total runtime. Any Playlist object that is not a PlayHandler (queue)
+// should set a name.
+
+// - Album is a subtype of Playlist that is auto-managed, and has a
+//   creator (Artist) field
+// - PlayHandler is a subtype of Playlist that has no intended referencable
+//   name. It is temporary, and not saved as a part of user data
+
 public class Playlist extends Collection {
 
     // EFFECTS: construct a playlist with with no songs yet. If it is a
     // playlist, assumes that playlist.setName() is the next line called
-
     public Playlist() {
         this.name = "error (you should not be seeing this message)";
         this.songs = new ArrayList<Song>();

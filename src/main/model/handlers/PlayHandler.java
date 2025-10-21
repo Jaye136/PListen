@@ -6,6 +6,15 @@ import java.util.List;
 import model.data.collections.Playlist;
 import model.data.plain.Song;
 
+// CLASS DOCUMENTATION: a queue (temporary Playlist) that is not
+// saved with user data, and is cleared when the program ends. It
+// 'plays' songs, and clears them from the queue one at a time.
+// It has more specific add Song methods that can put songs in a
+// specific order (front/back), as well as being able to replace
+// its songs with an existing Playlists (without modifying the
+// Playlist), and adding all songs from a Playlist to an existing
+// Song queue.
+
 public class PlayHandler extends Playlist {
 
     private List<Song> queue;

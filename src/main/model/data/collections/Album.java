@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import model.data.plain.Song;
 import model.handlers.Library;
 
+// CLASS DOCUMENT: a subtype of Playlist, which is a subtype of Collection.
+// This object can do Playlist mass-actions such as liking/unliking all songs
+// inside of it, or displaying additional information such as total runtime.
+// It has a field that shows its creator (Artist).
+
 public class Album extends Playlist {
 
     private Artist contributor;

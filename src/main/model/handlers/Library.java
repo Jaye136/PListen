@@ -7,6 +7,8 @@ import model.data.collections.*;
 import model.data.exceptions.SongNotFoundException;
 import model.data.plain.*;
 
+// CLASS DOCUMENT: a handler to read and initialise user data.
+
 public class Library {
     private List<Song> songLibrary;
     private static Artist unknownArtist;

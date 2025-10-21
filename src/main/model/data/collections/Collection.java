@@ -5,6 +5,20 @@ import java.util.List;
 import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
 
+// CLASS DOCUMENT: a data type specifying a general collection of Songs.
+// The Songs this object has is arbitrarily sized, and can be searched
+// for by name.
+
+// - Artist is a type of Collection used for display that is auto-managed.
+//   It gathers only the Songs and Albums corresponding to it
+// - Playlist is a special type of Collection that is manually managed by
+//   the user. It does not require specific information
+//      - PlayHandler (queue) is a subtype of Playlist that is user-managed,
+//        but is not saved as part of user data. Its name is not intended
+//        to be referenced
+//      - Album is a subtype of Playlist that is auto-managed. It gathers
+//        only the Songs corresponding to it, and has one creator (Artist)
+
 public abstract class Collection {
 
     protected String name;

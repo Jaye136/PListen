@@ -122,7 +122,7 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
 > *View basic information* for any song (either user-added, or default.
  Includes some of the information listed [here](#storing-songs).)<br>
   
-**Future plans for phase 2 (user data saving)**
-- Like or unlike a song (as fixed state)
-- Add new songs to the default library
-- Add songs to a new or existing playlist
+**User data saving**
+> Save the state of the Library after it was user-modified (including any changed information of Songs,
+  what songs are in the Library if any new Songs were added, etc.)<br>
+> Restore/reload the state of a Library to the same save state that was loaded in<br>

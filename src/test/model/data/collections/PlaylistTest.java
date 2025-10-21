@@ -5,11 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import model.data.plain.Song;
 import model.handlers.Library;
 
+@ExcludeFromJacocoGeneratedReport
 public class PlaylistTest extends CollectionTest {
 
     protected Playlist forPlaylistMethods;

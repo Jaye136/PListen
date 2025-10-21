@@ -1,8 +1,10 @@
 package ui;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.handlers.Library;
 import model.handlers.PlayHandler;
 
+@ExcludeFromJacocoGeneratedReport
 public class Main {
 
     static Boolean undecided;

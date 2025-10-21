@@ -3,6 +3,9 @@ package model.data.plain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import model.data.collections.Album;
@@ -10,6 +13,7 @@ import model.data.collections.Artist;
 import model.data.exceptions.SongNotFoundException;
 import model.handlers.Library;
 
+@ExcludeFromJacocoGeneratedReport
 public class SongTest {
 
     private Song testSong;

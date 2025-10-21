@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
 
+@ExcludeFromJacocoGeneratedReport
 public abstract class CollectionTest {
 
     protected Collection testCollection;

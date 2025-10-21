@@ -7,9 +7,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.plain.Song;
 import model.handlers.Library;
 
+@ExcludeFromJacocoGeneratedReport
 public class ArtistTest extends CollectionTest {
 
     private Artist forArtistMethods;

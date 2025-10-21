@@ -2,9 +2,11 @@ package ui;
 
 import java.util.Scanner;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
 
+@ExcludeFromJacocoGeneratedReport
 public class Options {
 
     private String select;

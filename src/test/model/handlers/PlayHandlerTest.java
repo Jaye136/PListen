@@ -7,9 +7,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.collections.Playlist;
 import model.data.plain.Song;
 
+@ExcludeFromJacocoGeneratedReport
 public class PlayHandlerTest {
 
     private PlayHandler playHandler;

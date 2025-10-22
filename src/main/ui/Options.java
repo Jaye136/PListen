@@ -20,29 +20,31 @@ public class Options {
 
     // EFFECTS: welcome user, show available options
     public void startView() {
+        if (Main.undecided) {
 
-        startViewDisplay();
+            startViewDisplay();
 
-        select = userInput.nextLine();
+            select = userInput.nextLine();
 
-        if (ckop("View library") || dop("l")) {
-            longLine();
-            libraryOptions();
-        } else if (ckop("View playlists") || dop("p")) {
-            longLine();
-            playlistOptions();
-        } else if (ckop("Queue Options") || dop("q")) {
-            longLine();
-            queueOptions();
-        } else if (ckop("Quit Program") || dop("qq")) {
-            longLine();
-            Main.undecided = false;
-        } else if (ckop("konamicode") && !debugMode) {
-            debugMode = true;
-            print("\nNice!");
-            longLine();
-        } else {
-            notValid();
+            if (ckop("View library") || dop("l")) {
+                longLine();
+                libraryOptions();
+            } else if (ckop("View playlists") || dop("p")) {
+                longLine();
+                playlistOptions();
+            } else if (ckop("Queue Options") || dop("q")) {
+                longLine();
+                queueOptions();
+            } else if (ckop("Quit Program") || dop("qq")) {
+                longLine();
+                Main.undecided = false;
+            } else if (ckop("konamicode") && !debugMode) {
+                debugMode = true;
+                print("\nNice!");
+                longLine();
+            } else {
+                notValid();
+            }
         }
     }
 
@@ -56,29 +58,31 @@ public class Options {
 
     // EFFECTS: show options in the library menu
     private void libraryOptions() {
-        print("\nEnter all options exactly.");
-        print("  > New Song+");
-        print("  > Search Library");
-        print("  > List of Songs");
-        print("  > Back\n");
+        if (Main.undecided) {
+            print("\nEnter all options exactly.");
+            print("  > New Song+");
+            print("  > Search Library");
+            print("  > List of Songs");
+            print("  > Back\n");
 
-        select = userInput.nextLine();
+            select = userInput.nextLine();
 
-        if (ckop("New Song+") || dop("n")) {
-            longLine();
-            newSongMenu();
-        } else if (ckop("Search Library") || dop("s")) {
-            print("\nTODO");
-        } else if (ckop("List of Songs") || dop("l")) {
-            longLine();
-            viewSongs();
-        } else if (ckop("Back") || dop("b")) {
-            backButton();
-            startView();
-        } else {
-            notValid();
+            if (ckop("New Song+") || dop("n")) {
+                longLine();
+                newSongMenu();
+            } else if (ckop("Search Library") || dop("s")) {
+                print("\nTODO");
+            } else if (ckop("List of Songs") || dop("l")) {
+                longLine();
+                viewSongs();
+            } else if (ckop("Back") || dop("b")) {
+                backButton();
+                startView();
+            } else {
+                notValid();
+            }
+            libraryOptions();
         }
-        libraryOptions();
     }
 
     private void playlistOptions() {
@@ -101,49 +105,55 @@ public class Options {
     }
 
     private void viewSongs() {
-        for (Song song : Main.library.getSongLibrary()) {
-            print(song.getTitle() + " by " + song.getCreator().getName() + " || " + song.getDuration() + " seconds");
-        }
-        print("\nEnter the index of the song to add it to the queue.");
-        print("  > Back\n");
-
-        select = userInput.nextLine();
-
-        if (ckop("Back") || dop("b")) {
-            backButton();
-            libraryOptions();
-        } else {
-            try {
-                songInfoOptions(Main.library.searchSong(select));
-            } catch (SongNotFoundException e) {
-                notValid();
+        if (Main.undecided) {
+            for (Song song : Main.library.getSongLibrary()) {
+                print(song.getTitle() + " by " + song.getCreator().getName() + " || " + song.getDuration()
+                        + " seconds");
             }
+            print("\nEnter the index of the song to add it to the queue.");
+            print("  > Back\n");
+
+            select = userInput.nextLine();
+
+            if (ckop("Back") || dop("b")) {
+                backButton();
+                libraryOptions();
+            } else {
+                try {
+                    songInfoOptions(Main.library.searchSong(select));
+                } catch (SongNotFoundException e) {
+                    notValid();
+                }
+            }
+            viewSongs();
         }
-        viewSongs();
     }
 
     private void songInfoOptions(Song song) {
+        if (Main.undecided) {
 
-        songInfoDisplay(song);
+            songInfoDisplay(song);
 
-        select = userInput.nextLine();
+            select = userInput.nextLine();
 
-        if (ckop("Play next") || dop("n")) {
-            Main.playHandler.nextAddSong(song);
-            print("\nSuccessfully added to queue!");
-            longLine();
-            viewSongs();
-        } else if (ckop("Add to queue") || dop("a")) {
-            Main.playHandler.queueAddSong(song);
-            longLine();
-            print("\nSuccessfully added to queue!");
-        } else if (ckop("Back") || dop("b")) {
-            backButton();
-            viewSongs();
-        } else {
-            notValid();
+            if (ckop("Play next") || dop("n")) {
+                Main.playHandler.nextAddSong(song);
+                print("\nSuccessfully added to queue!");
+                longLine();
+                viewSongs();
+            } else if (ckop("Add to queue") || dop("a")) {
+                Main.playHandler.queueAddSong(song);
+                longLine();
+                print("\nSuccessfully added to queue!");
+                viewSongs();
+            } else if (ckop("Back") || dop("b")) {
+                backButton();
+                viewSongs();
+            } else {
+                notValid();
+            }
+            songInfoOptions(song);
         }
-        songInfoOptions(song);
     }
 
     private void songInfoDisplay(Song song) {
@@ -162,44 +172,48 @@ public class Options {
     }
 
     private void queueOptions() {
-        print("\nEnter all options exactly.");
-        print("  > Play queue");
-        print("  > View queue");
-        print("  > Back\n");
+        if (Main.undecided) {
+            print("\nEnter all options exactly.");
+            print("  > Play queue");
+            print("  > View queue");
+            print("  > Back\n");
 
-        select = userInput.nextLine();
+            select = userInput.nextLine();
 
-        if (ckop("Play queue") || dop("p")) {
-            print("\nTODO");
-        } else if (ckop("View queue") || dop("v")) {
-            viewSongsQueue();
-        } else if (ckop("Back") || dop("b")) {
-            backButton();
-            startView();
-        } else {
-            notValid();
+            if (ckop("Play queue") || dop("p")) {
+                print("\nTODO");
+            } else if (ckop("View queue") || dop("v")) {
+                viewSongsQueue();
+            } else if (ckop("Back") || dop("b")) {
+                backButton();
+                startView();
+            } else {
+                notValid();
+            }
+            queueOptions();
         }
-        queueOptions();
     }
 
     private void viewSongsQueue() {
-        if (Main.playHandler.getQueue().isEmpty()) {
-            print("No songs in the queue");
-        } else {
-            for (Song song : Main.playHandler.getQueue()) {
-                print(song.getTitle() + " by " + song.getCreator().getName() + " || " + song.getDuration()
-                        + " seconds");
+        if (Main.undecided) {
+            if (Main.playHandler.getQueue().isEmpty()) {
+                print("No songs in the queue");
+            } else {
+                for (Song song : Main.playHandler.getQueue()) {
+                    print(song.getTitle() + " by " + song.getCreator().getName() + " || " + song.getDuration()
+                            + " seconds");
+                }
             }
-        }
-        print("\n  > Back\n");
+            print("\n  > Back\n");
 
-        select = userInput.nextLine();
+            select = userInput.nextLine();
 
-        if (ckop("Back") || dop("b")) {
-            backButton();
-            queueOptions();
+            if (ckop("Back") || dop("b")) {
+                backButton();
+                queueOptions();
+            }
+            viewSongsQueue();
         }
-        viewSongsQueue();
     }
 
     // TEXT UTILITY FUNCTIONS

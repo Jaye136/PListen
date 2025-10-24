@@ -1,10 +1,14 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
+import persistence.LibraryLoader;
+import persistence.LibraryWriter;
 
 @ExcludeFromJacocoGeneratedReport
 public class Options {
@@ -12,6 +16,8 @@ public class Options {
     private String select;
     private Scanner userInput;
     private Boolean debugMode; // reduce typing while testing UI
+    private LibraryLoader loader;
+    private LibraryWriter writer;
 
     public Options() {
         userInput = new Scanner(System.in);
@@ -35,6 +41,9 @@ public class Options {
             } else if (ckop("Queue Options") || dop("q")) {
                 longLine();
                 queueOptions();
+            } else if (ckop("Save/load data") || dop("sl")) {
+                longLine();
+                slOptions();
             } else if (ckop("Quit Program") || dop("qq")) {
                 longLine();
                 Main.undecided = false;
@@ -53,7 +62,39 @@ public class Options {
         print("  > View library");
         print("  > View playlists");
         print("  > Queue Options");
+        print("  > Save/load data");
         print("  > Quit program\n");
+    }
+
+    // EFFECTS: show save/load options
+    private void slOptions() {
+        print("\nEnter all options exactly.");
+        print("  > Save library");
+        print("  > Load library\n");
+
+        select = userInput.nextLine();
+
+        if (ckop("Save library") || dop("s")) {
+            try {
+                writer = new LibraryWriter("./data/librarySave.json");
+                writer.writeJson(Main.library);
+                System.out.println("Saved successfully.");
+                longLine();
+            } catch (FileNotFoundException e) {
+                System.out.println("Unable to write to file.");
+            }
+        } else if (ckop("Load library") || dop("l")) {
+            try {
+                loader = new LibraryLoader("./data/librarySave.json");
+                Main.library = loader.readJson();
+                System.out.println("Loaded successfully.");
+                longLine();
+            } catch (IOException e) {
+                System.out.println("Unable to load file.");
+            }
+        } else {
+            notValid();
+        }
     }
 
     // EFFECTS: show options in the library menu

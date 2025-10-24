@@ -1,51 +1,54 @@
 {
     "songLibrary": [
         {
-            "title": "boomChaCha",
+            "creator": "chachaBoomer",
+            "colour": "12832222",
+            "likedStatus": "false",
+            "durationInSeconds": 0,
+            "album": "wanting to MOVE!",
+            "songGenre": "UNKNOWN",
             "link": "https/didItrickyou/question/BCHCH.M4A",
-            "creator": "",
-            "album": "",
-            "songGenre": "",
-            "durationInseconds": 0,
-            "colour": "0xc3cdde",
-            "likedStatus": "false"
+            "title": "boomChaCha"
         },
         {
-            "name": "saw",
-            "category": "WOODWORK"
-        }
-    ],
-    "playlistLibrary": [],
-    "artistLibrary": [
-        {
-            "name": "chachaBoomer",
-            "songs": [],
-            "albums": [
-                {
-                    "title": "wanting to MOVE!",
-                    "songs": []
-                }
-            ]
+            "creator": "chachaBoomer",
+            "colour": "0",
+            "likedStatus": "false",
+            "durationInSeconds": 0,
+            "album": "unknown",
+            "songGenre": "HIPRAP",
+            "link": "file/morefile/songfiles/FrshBts.WAV",
+            "title": "fresh beats"
         },
         {
-            "name": "istArt the trAtsi",
-            "songs": [],
-            "albums": [
-                {
-                    "title": "feeling sleepy...",
-                    "songs": []
-                }
-            ]
-        }
-    ],
-    "albumLibrary": [
-        {
-            "title": "wanting to MOVE!",
-            "songs": []
+            "creator": "istArtist the trAtsi",
+            "colour": "12832222",
+            "likedStatus": "true",
+            "durationInSeconds": 75,
+            "album": "unknown",
+            "songGenre": "UNKNOWN",
+            "link": "file/hidefile/songfiles/MysTune.mp3",
+            "title": "mysterious tunes"
         },
         {
-            "title": "feeling sleepy...",
-            "songs": []
+            "creator": "chachaBoomer",
+            "colour": "16777215",
+            "likedStatus": "false",
+            "durationInSeconds": 0,
+            "album": "wanting to MOVE!",
+            "songGenre": "HIPRAP",
+            "link": "https://spotthefy.moc",
+            "title": "nice bars"
+        },
+        {
+            "creator": "istArtist the trAtsi",
+            "colour": "12832222",
+            "likedStatus": "false",
+            "durationInSeconds": 80,
+            "album": "feeling sleepy...",
+            "songGenre": "JAZZ",
+            "link": "https://tubeyou.moc",
+            "title": "jazzy jams"
         }
     ]
 }

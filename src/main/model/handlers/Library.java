@@ -108,7 +108,9 @@ public class Library {
             song.setCreator(artistFind);
         } catch (ArtistNotFoundException e) {
             Artist artistExist = new Artist(name);
-            artistLibrary.add(artistExist);
+            if (artistExist != unknownArtist) {
+                artistLibrary.add(artistExist);
+            }
             song.setCreator(artistExist);
         }
     }
@@ -126,14 +128,18 @@ public class Library {
                 Artist artistFind = searchArtist(albumArtist);
                 Album albumArtistExist = new Album(albumTitle);
                 albumArtistExist.setContributor(artistFind);
-                albumLibrary.add(albumArtistExist);
+                if (albumArtistExist != unknownAlbum) {
+                    albumLibrary.add(albumArtistExist);
+                }
                 song.setAlbum(albumArtistExist);
                 song.setCreator(artistFind);
             } catch (ArtistNotFoundException ex) {
                 Artist artistExist = new Artist(albumArtist);
                 Album albumArtistExist = new Album(albumTitle);
                 albumArtistExist.setContributor(artistExist);
-                albumLibrary.add(albumArtistExist);
+                if (albumArtistExist != unknownAlbum) {
+                    albumLibrary.add(albumArtistExist);
+                }
                 song.setAlbum(albumArtistExist);
                 song.setCreator(artistExist);
             }
@@ -149,23 +155,37 @@ public class Library {
         addSongToLibrary(title, link);
         String creator = jsonSong.getString("creator");
         String album = jsonSong.getString("album");
+        String songGenre = jsonSong.getString("songGenre");
+        int durationInSeconds = jsonSong.getInt("durationInSeconds");
+        int colour = Integer.valueOf(jsonSong.getString("colour"));
+        Boolean likedStatus = Boolean.valueOf(jsonSong.getString("likedStatus"));
         try {
             Song loadedSong = searchSong(title);
             songArtist(creator, loadedSong);
             songAlbum(album, creator, loadedSong);
-            String songGenre = jsonSong.getString("songGenre");
             loadedSong.setGenre(Genre.valueOf(songGenre));
-            int durationInSeconds = jsonSong.getInt("durationInSeconds");
             loadedSong.setDuration(durationInSeconds);
-            int colour = Integer.valueOf(jsonSong.getString("colour"));
             loadedSong.setColour(colour);
-            Boolean likedStatus = Boolean.valueOf(jsonSong.getString("likedStatus"));
             loadedSong.switchLikedStatus(likedStatus);
         } catch (SongNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
-        
+    // EFFECTS: write save data to JSON
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("songLibrary", songsToJson());
+        return json;
+    }
+
+    // EFFECTS: turn song object to JSON
+    public JSONArray songsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Song song : songLibrary) {
+            jsonArray.put(song.toJson());
+        }
+        return jsonArray;
     }
 
     // EFFECTS: getter (only for testing)

@@ -28,7 +28,7 @@ public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC2
         StringBuilder strBuild = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(saveSource), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> strBuild.append(s));
+            stream.forEach(s -> strBuild.append(s));    
         }
 
         String strData = strBuild.toString();

@@ -14,7 +14,7 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
     void testWriteInvalid() {
         try {
             Library saveThis = new Library();
-            LibraryWriter write = new LibraryWriter("./data/null.json");
+            LibraryWriter write = new LibraryWriter("./data/\0illegal:filenameCant.json");
             write.writeJson(saveThis);
             fail();
         } catch (IOException e) {
@@ -26,10 +26,10 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
     void testWriteEmpty() {
         try {
             Library saveThis = new Library();
-            LibraryWriter write = new LibraryWriter("./data/emptyWrite");
+            LibraryWriter write = new LibraryWriter("./data/emptyWrite.json");
             write.writeJson(saveThis);
 
-            LibraryLoader load = new LibraryLoader("./data/emptyWrite");
+            LibraryLoader load = new LibraryLoader("./data/emptyWrite.json");
             saveThis = load.readJson();
             assertEquals(saveThis.getSongLibrary().size(), 0);
         } catch (IOException e) {
@@ -41,11 +41,11 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
     void testWriteNoneExceptDefault() {
         try {
             Library saveThis = new Library();
-            Library.defaultValues();
-            LibraryWriter write = new LibraryWriter("./data/noneExceptDefaultWrite");
+            saveThis.loadDefault();
+            LibraryWriter write = new LibraryWriter("./data/noneExceptDefaultWrite.json");
             write.writeJson(saveThis);
 
-            LibraryLoader load = new LibraryLoader("./data/noneExceptDefaultWrite");
+            LibraryLoader load = new LibraryLoader("./data/noneExceptDefaultWrite.json");
             saveThis = load.readJson();
             assertEquals(saveThis.getSongLibrary().size(), 5);
         } catch (IOException e) {

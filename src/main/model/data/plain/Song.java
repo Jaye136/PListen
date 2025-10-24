@@ -1,5 +1,7 @@
 package model.data.plain;
 
+import org.json.JSONObject;
+
 import model.data.collections.Album;
 import model.data.collections.Artist;
 import model.handlers.Library;
@@ -103,6 +105,20 @@ public class Song { // could also make podcast subclass
         this.durationInSeconds = 0;
         this.colour = 0xc3cdde;
         this.likedStatus = false;
+    }
+
+    // EFFECTS: create JSON object for this
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("link", link);
+        json.put("creator", creator.getName());
+        json.put("album", album.getName());
+        json.put("songGenre", songGenre.toString());
+        json.put("durationInSeconds", durationInSeconds);
+        json.put("colour", String.valueOf(colour));
+        json.put("likedStatus", String.valueOf(likedStatus));
+        return json;
     }
 
     // MODIFIES: this

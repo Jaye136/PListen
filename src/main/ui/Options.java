@@ -97,7 +97,7 @@ public class Options {
         print("\nEnter the link of your song\n");
         String link = userInput.nextLine();
 
-        Main.library.addToLibrary(title, link);
+        Main.library.addSongToLibrary(title, link);
 
         print("Added succesfully!");
         longLine();

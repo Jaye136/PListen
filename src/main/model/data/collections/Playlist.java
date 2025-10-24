@@ -24,7 +24,7 @@ public class Playlist extends Collection {
         this.songs = new ArrayList<Song>();
     }
 
-    // MODIFIES: song in this
+    // MODIFIES: song in this.songs
     // EFFECTS: mass like or unlike all songs in the playlist
     // t: mass like, f: mass unlike
     public void massOpinion(Boolean liked) {

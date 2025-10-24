@@ -26,10 +26,10 @@ public class LibraryTest {
 
     @Test
     void libraryNoneToOne() {
-        assertEquals(3, library.getSongLibrary().size());
-        library.addToLibrary("fresh beats", "linkpath");
-        assertEquals(4, library.getSongLibrary().size());
-        assertEquals("fresh beats", library.getSongLibrary().get(3).getTitle());
+        assertEquals(5, library.getSongLibrary().size());
+        library.addSongToLibrary("fresh beats", "linkpath");
+        assertEquals(6, library.getSongLibrary().size());
+        assertEquals("fresh beats", library.getSongLibrary().get(5).getTitle());
     }
 
     @Test

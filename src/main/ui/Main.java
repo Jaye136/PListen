@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         library = new Library();
+        library.defaultValues();
         playHandler = new PlayHandler();
         playHandler.start();
 

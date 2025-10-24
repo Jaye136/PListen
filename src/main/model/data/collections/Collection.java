@@ -25,6 +25,32 @@ public abstract class Collection {
     protected List<Song> songs;
     private Song lastSearchedSong;
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    // EFFECTS: changes equals to check name instead of object ID
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Collection other = (Collection) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
+
     // EFFECTS: return the song found using canGetSongFromCollection
     // otherwise, if cannot find song, throw SongNotFoundException
     public Song searchSong(String title) throws SongNotFoundException {

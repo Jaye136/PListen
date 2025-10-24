@@ -11,6 +11,9 @@ import model.data.plain.*;
 
 public class Library {
     private List<Song> songLibrary;
+    private List<Playlist> playLibrary;
+    private List<Artist> artistLibrary;
+    private List<Album> albumLibrary;
     private static Artist unknownArtist;
     private static Album unknownAlbum;
     private Song lastSearchedSong;
@@ -18,12 +21,15 @@ public class Library {
     // EFFECTS: initialise the default library
     public Library() {
         songLibrary = new ArrayList<Song>();
+        playLibrary = new ArrayList<Playlist>();
+        artistLibrary = new ArrayList<Artist>();
+        albumLibrary = new ArrayList<Album>();
         defaultValues();
-        startLibrary();
+        loadDefault();
     }
 
     // EFFECTS: allows for default values of songs. Only callable for
-    // test purposes
+    // test purposes. Not added/recognised as a part of artist/albumLibrary
     public static void defaultValues() {
         unknownArtist = new Artist("unknown");
         unknownAlbum = new Album("unknown");
@@ -39,10 +45,19 @@ public class Library {
         return unknownAlbum;
     }
 
-    // MODIFIES: this
-    // EFFECTS: temporary function to add default songs into library
-    // (in phase 2, will read from user file, and not self-instantiate)
-    private void startLibrary() {
+    // EFFECTS: start up default library
+    public void loadDefault() {
+        addSongToLibrary("boomChaCha", "https/didItrickyou/question/BCHCH.M4A");
+        addSongToLibrary("fresh beats", "file/morefile/songfiles/FrshBts.WAV");
+        addSongToLibrary("mysterious tunes", "file/hidefile/songfiles/MysTune.mp3");
+        addSongToLibrary("nice bars", "https://spotthefy.moc");
+        addSongToLibrary("jazzy jams", "https://tubeyou.moc");
+
+        defaultSongDetails();
+    }
+
+    // EFFECTS: add details for default value songs
+    private void defaultSongDetails() {
         Artist chachaBoomer = new Artist("chachaBoomer");
         Artist istArt = new Artist("istArt the trAtsi");
 
@@ -51,51 +66,54 @@ public class Library {
 
         Album songsOfSlow = new Album("feeling sleepy...");
         songsOfSlow.setContributor(istArt);
+        
+        songLibrary.get(0).setCreator(chachaBoomer);
+        songLibrary.get(0).setAlbum(songsOfMovement);
 
-        Song song1 = new Song("boomChaCha", "https/didItrickyou/question/BCHCH.M4A");
-        song1.setCreator(chachaBoomer);
-        song1.setAlbum(songsOfMovement);
-        addToLibrary(song1);
+        songLibrary.get(1).setCreator(chachaBoomer);
+        songLibrary.get(1).setGenre(Genre.HIPRAP);
+        songLibrary.get(1).setColour(0x000000);
 
-        Song song2 = new Song("fresh beats", "file/morefile/songfiles/FrshBts.WAV");
-        song2.setCreator(chachaBoomer);
-        song2.setGenre(Genre.HIPRAP);
-        song2.setColour(0x000000);
-        addToLibrary(song2);
+        songLibrary.get(2).setCreator(istArt);
+        songLibrary.get(2).setDuration(75);
+        songLibrary.get(2).switchLikedStatus(true);
 
-        Song song3 = new Song("mysterious tunes", "file/hidefile/songfiles/MysTune.mp3");
-        song3.setCreator(istArt);
-        song3.setDuration(75);
-        song3.switchLikedStatus(true);
-        addToLibrary(song3);
+        songLibrary.get(3).setAlbum(songsOfMovement);
+        songLibrary.get(3).setGenre(Genre.HIPRAP);
+        songLibrary.get(3).setColour(0xFFFFFF);
 
-        // Song song4 = new Song("nice bars", "https://spotthefy.moc");
-        // song4.setAlbum(songsOfMovement);
-        // song4.setGenre(Genre.HIPRAP);
-        // song4.setColour(0xFFFFFF);
-        // addToLibrary(song4);
-
-        // Song song5 = new Song("jazzy jams", "https://tubeyou.moc");
-        // song5.setAlbum(songsOfSlow);
-        // song5.setGenre(Genre.JAZZ);
-        // song5.setDuration(80);
-        // addToLibrary(song5);
+        songLibrary.get(4).setAlbum(songsOfSlow);
+        songLibrary.get(4).setGenre(Genre.JAZZ);
+        songLibrary.get(4).setDuration(80);
     }
 
     // MODIFIES: this
-    // EFFECTS: add song data to library. For stored songs only. For other uses,
-    // please use the addToLibrary(String title, String link) method.
-    // (temporary, not saved as user data yet)
-    private void addToLibrary(Song song) {
-        songLibrary.add(song);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: create and add new song to list of available songs in program
-    // (temporary, not saved as user data yet)
-    public void addToLibrary(String title, String link) {
+    // EFFECTS: create and add new song to list of available songs in program.
+    // Temporary, needs to be manually saved afterwards
+    public void addSongToLibrary(String title, String link) {
         Song song = new Song(title, link);
         songLibrary.add(song);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add saved song data to library. For stored songs only. For other
+    // uses, please use the addToLibrary(String title, String link) method.
+    private void loadSongToLibrary(Song song) {
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add saved playlist data to library
+    private void loadPlayToLibrary(Playlist playlist) {
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add saved artist data to library
+    private void loadArtistToLibrary(Artist artist) {
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add saved album data to library
+    private void loadAlbumToLibrary(Album album) {
     }
 
     // EFFECTS: getter (only for testing)

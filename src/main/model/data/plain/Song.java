@@ -41,6 +41,56 @@ public class Song { // could also make podcast subclass
     private int colour;
     private Boolean likedStatus;
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((link == null) ? 0 : link.hashCode());
+        result = prime * result + ((creator == null) ? 0 : creator.hashCode());
+        result = prime * result + ((album == null) ? 0 : album.hashCode());
+        result = prime * result + ((songGenre == null) ? 0 : songGenre.hashCode());
+        result = prime * result + durationInSeconds;
+        result = prime * result + colour;
+        result = prime * result + ((likedStatus == null) ? 0 : likedStatus.hashCode());
+        return result;
+    }
+
+    // EFFECTS: changes equals to check song information instead of object ID
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Song other = (Song) obj;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        if (link == null) {
+            if (other.link != null)
+                return false;
+        } else if (!link.equals(other.link))
+            return false;
+        if (!creator.equals(other.creator))
+            return false;
+        if (!album.equals(other.album))
+            return false;
+        if (songGenre != other.songGenre)
+            return false;
+        if (durationInSeconds != other.durationInSeconds)
+            return false;
+        if (colour != other.colour)
+            return false;
+        if (!likedStatus.equals(other.likedStatus))
+            return false;
+        return true;
+    }
+
     // EFFECTS: construct an song with given name and link, everything else is
     // unknown. Callable for testing purposes only. For other uses, please use
     // Library.addSong(String title, String link) method.
@@ -67,7 +117,7 @@ public class Song { // could also make podcast subclass
         this.link = link;
     }
 
-    // MODIFIES: this, artist
+    // MODIFIES: this, creator
     // EFFECTS: set the artist for this song, remove this song from the old artist,
     // and add this song to the artist's created songs
     public void setCreator(Artist creator) {
@@ -78,7 +128,7 @@ public class Song { // could also make podcast subclass
         this.creator.addSong(this);
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, album
     // EFFECTS: set the album for this song, remove this song from the old album,
     // and add this song to the album's songs
     public void setAlbum(Album album) {

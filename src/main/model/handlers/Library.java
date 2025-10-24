@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.data.collections.*;
-import model.data.exceptions.SongNotFoundException;
+import model.data.exceptions.*;
 import model.data.plain.*;
 
 // CLASS DOCUMENT: a handler to read and initialise user data.
@@ -17,6 +17,8 @@ public class Library {
     private static Artist unknownArtist;
     private static Album unknownAlbum;
     private Song lastSearchedSong;
+    private Artist lastSearchedArtist;
+    private Album lastSearchedAlbum;
 
     // EFFECTS: initialise the default library
     public Library() {
@@ -98,27 +100,42 @@ public class Library {
     // MODIFIES: this
     // EFFECTS: add saved song data to library. For stored songs only. For other
     // uses, please use the addToLibrary(String title, String link) method.
-    private void loadSongToLibrary(Song song) {
+    public void loadSongToLibrary(Song song) {
     }
 
     // MODIFIES: this
     // EFFECTS: add saved playlist data to library
-    private void loadPlayToLibrary(Playlist playlist) {
+    public void loadPlayToLibrary(Playlist playlist) {
     }
 
     // MODIFIES: this
     // EFFECTS: add saved artist data to library
-    private void loadArtistToLibrary(Artist artist) {
+    public void loadArtistToLibrary(Artist artist) {
     }
 
     // MODIFIES: this
     // EFFECTS: add saved album data to library
-    private void loadAlbumToLibrary(Album album) {
+    public void loadAlbumToLibrary(Album album) {
     }
 
     // EFFECTS: getter (only for testing)
     public List<Song> getSongLibrary() {
         return songLibrary;
+    }
+
+    // EFFECTS: getter (only for testing)
+    public List<Playlist> getPlayLibrary() {
+        return playLibrary;
+    }
+
+    // EFFECTS: getter (only for testing)
+    public List<Artist> getArtistLibrary() {
+        return artistLibrary;
+    }
+
+    // EFFECTS: getter (only for testing)
+    public List<Album> getAlbumLibrary() {
+        return albumLibrary;
     }
 
     // EFFECTS: return the song found using canGetSongFromCollection
@@ -138,6 +155,52 @@ public class Library {
         for (Song inLibrary : songLibrary) {
             if (inLibrary.getTitle().equals(title)) {
                 lastSearchedSong = inLibrary;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // EFFECTS: return the artist found using canGetArtistFromCollection
+    // otherwise, if cannot find artist, throw ArtistNotFoundException
+    public Artist searchArtist(String name) throws ArtistNotFoundException {
+        if (canGetArtistFromLibrary(name)) {
+            return lastSearchedArtist;
+        } else {
+            throw new ArtistNotFoundException();
+        }
+    }
+
+    // REQUIRES: library has no other artists with the same name
+    // EFFECTS: search library for the first artist with the given name. If
+    // true, artist exists, otherwise fail
+    private Boolean canGetArtistFromLibrary(String name) {
+        for (Artist inLibrary : artistLibrary) {
+            if (inLibrary.getName().equals(name)) {
+                lastSearchedArtist = inLibrary;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // EFFECTS: return the album found using canGetAlbumFromCollection
+    // otherwise, if cannot find album, throw AlbumgNotFoundException
+    public Album searchAlbum(String name) throws AlbumNotFoundException {
+        if (canGetAlbumFromLibrary(name)) {
+            return lastSearchedAlbum;
+        } else {
+            throw new AlbumNotFoundException();
+        }
+    }
+
+    // REQUIRES: library has no other albums with the same title
+    // EFFECTS: search library for the first albums with the given title. If
+    // true, album exists, otherwise fail
+    private Boolean canGetAlbumFromLibrary(String name) {
+        for (Album inLibrary : albumLibrary) {
+            if (inLibrary.getName().equals(name)) {
+                lastSearchedAlbum = inLibrary;
                 return true;
             }
         }

@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
@@ -81,7 +80,7 @@ public abstract class CollectionTest {
         try {
             testCollection.searchSong("mysterious tunes");
         } catch (SongNotFoundException e) {
-            fail("Song does not exist");
+            fail("Song exists");
         }
     }
 

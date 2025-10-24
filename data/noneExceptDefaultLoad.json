@@ -1,0 +1,51 @@
+{
+    "songLibrary": [
+        {
+            "title": "boomChaCha",
+            "link": "https/didItrickyou/question/BCHCH.M4A",
+            "creator": "",
+            "album": "",
+            "songGenre": "",
+            "durationInseconds": "0",
+            "colour": "0xc3cdde",
+            "likedStatus": "false"
+        },
+        {
+            "name": "saw",
+            "category": "WOODWORK"
+        }
+    ],
+    "playlistLibrary": [],
+    "artistLibrary": [
+        {
+            "name": "chachaBoomer",
+            "songs": [],
+            "albums": [
+                {
+                    "title": "wanting to MOVE!",
+                    "songs": []
+                }
+            ]
+        },
+        {
+            "name": "istArt the trAtsi",
+            "songs": [],
+            "albums": [
+                {
+                    "title": "feeling sleepy...",
+                    "songs": []
+                }
+            ]
+        }
+    ],
+    "albumLibrary": [
+        {
+            "title": "wanting to MOVE!",
+            "songs": []
+        },
+        {
+            "title": "feeling sleepy...",
+            "songs": []
+        }
+    ]
+}

@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import model.handlers.Library;
 import persistence.exceptions.InvalidFileException;
-import persistence.exceptions.InvalidFilepathException;
 
 public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC210
     private String saveSource;
@@ -16,17 +15,16 @@ public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC2
 
     // EFFECTS: attempt to read the JSON, and save it to a JSON
     // object for reference.
-    // If the JSON does not exist in the given filepath, throw
-    // InvalidFilepathException. If a JSON does exist, but fails
-    // to be readable during parsing, pass InvalidFileException
-    public Library readJson() throws InvalidFilepathException, InvalidFileException {
+    // If the JSON fails to be readable during parsing, due to
+    // not existing, or other reasons, pass InvalidFileException
+    public Library readJson() throws InvalidFileException {
         return null;
     }
 
     // EFFECTS: attempt to parse the JSON. If it fails to be readable,
     // throw InvalidFileException. Otherwise, return the parsed
     // saved state of the Library
-    public Library parseJson(JSONObject jsonObject) throws InvalidFileException {
+    private Library parseJson(JSONObject jsonObject) throws InvalidFileException {
         return null;
     }
 
@@ -38,6 +36,6 @@ public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC2
 
     // MODIFIES: libraryToLoadInto
     // EFFECTS: load parsed objects into the Library
-    public void startLibrary(Library libraryToLoadInto) {}
+    private void startLibrary(Library libraryToLoadInto) {}
 
 }

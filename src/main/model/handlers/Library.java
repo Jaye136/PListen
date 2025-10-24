@@ -27,7 +27,6 @@ public class Library {
         artistLibrary = new ArrayList<Artist>();
         albumLibrary = new ArrayList<Album>();
         defaultValues();
-        loadDefault();
     }
 
     // EFFECTS: allows for default values of songs. Only callable for
@@ -68,23 +67,23 @@ public class Library {
 
         Album songsOfSlow = new Album("feeling sleepy...");
         songsOfSlow.setContributor(istArt);
-        
-        songLibrary.get(0).setCreator(chachaBoomer);
-        songLibrary.get(0).setAlbum(songsOfMovement);
 
-        songLibrary.get(1).setCreator(chachaBoomer);
+        songArtist("chachaBoomer", songLibrary.get(0));
+        songAlbum("wanting to MOVE!", "chachaBoomer", songLibrary.get(0));
+
+        songArtist("chachaBoomer", songLibrary.get(1));
         songLibrary.get(1).setGenre(Genre.HIPRAP);
         songLibrary.get(1).setColour(0x000000);
 
-        songLibrary.get(2).setCreator(istArt);
+        songArtist("istArtist the trAtsi", songLibrary.get(2));
         songLibrary.get(2).setDuration(75);
         songLibrary.get(2).switchLikedStatus(true);
 
-        songLibrary.get(3).setAlbum(songsOfMovement);
+        songAlbum("wanting to MOVE!", "chachaBoomer", songLibrary.get(3));
         songLibrary.get(3).setGenre(Genre.HIPRAP);
         songLibrary.get(3).setColour(0xFFFFFF);
 
-        songLibrary.get(4).setAlbum(songsOfSlow);
+        songAlbum("feeling sleepy...", "istArtist the trAtsi", songLibrary.get(4));
         songLibrary.get(4).setGenre(Genre.JAZZ);
         songLibrary.get(4).setDuration(80);
     }
@@ -95,6 +94,47 @@ public class Library {
     public void addSongToLibrary(String title, String link) {
         Song song = new Song(title, link);
         songLibrary.add(song);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add artist to list of available artists in program, if there
+    // are no other artists by the same name, then set song's artist
+    public void songArtist(String title, Song song) {
+        try {
+            Artist artistFind = searchArtist(title);
+            song.setCreator(artistFind);
+        } catch (ArtistNotFoundException e) {
+            Artist artistExist = new Artist(title);
+            artistLibrary.add(artistExist);
+            song.setCreator(artistExist);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add album to list of available albums in program, if there
+    // are no other albums by the same name, then set song's album
+    public void songAlbum(String albumTitle, String albumArtist, Song song) {
+        try {
+            Album albumFind = searchAlbum(albumTitle);
+            song.setAlbum(albumFind);
+            song.setCreator(albumFind.getContributor());
+        } catch (AlbumNotFoundException e) {
+            try {
+                Artist artistFind = searchArtist(albumArtist);
+                Album albumArtistExist = new Album(albumTitle);
+                albumArtistExist.setContributor(artistFind);
+                albumLibrary.add(albumArtistExist);
+                song.setAlbum(albumArtistExist);
+                song.setCreator(artistFind);
+            } catch (ArtistNotFoundException ex) {
+                Artist artistExist = new Artist(albumArtist);
+                Album albumArtistExist = new Album(albumTitle);
+                albumArtistExist.setContributor(artistExist);
+                albumLibrary.add(albumArtistExist);
+                song.setAlbum(albumArtistExist);
+                song.setCreator(artistExist);
+            }
+        }
     }
 
     // MODIFIES: this

@@ -1,5 +1,48 @@
 package persistence;
 
-public class LibraryLoaderTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Test;
+
+import model.handlers.Library;
+import persistence.exceptions.InvalidFileException;
+
+public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from CPSC210
+
+    @Test
+    void testFileDoesntExistIssue() {
+        LibraryLoader load = new LibraryLoader("./data/null.json");
+        try {
+            load.readJson();
+            fail("no such file");
+        } catch (InvalidFileException e) {
+            System.out.println("expected");
+        }
+    }
+
+    @Test
+    void libraryLoadEmpty() {
+        LibraryLoader load = new LibraryLoader("./data/emptyLoad");
+        try {
+            Library loadLib = load.readJson();
+            assertEquals(loadLib.getSongLibrary().size(), 0);
+            assertEquals(loadLib.getAlbumLibrary().size(), 0);
+            assertEquals(loadLib.getArtistLibrary().size(), 0);
+        } catch (InvalidFileException e) {
+            fail("file exists");
+        }
+    }
+
+    @Test
+    void libraryNoneExceptDefault() {
+        LibraryLoader load = new LibraryLoader("./data/noneExceptDefaultLoad");
+        try {
+            Library loadLib = load.readJson();
+            assertEquals(loadLib.getSongLibrary().size(), 5);
+            assertEquals(loadLib.getAlbumLibrary().size(), 2);
+            assertEquals(loadLib.getArtistLibrary().size(), 2);
+        } catch (InvalidFileException e) {
+            fail("file exists");
+        }
+    }
 }

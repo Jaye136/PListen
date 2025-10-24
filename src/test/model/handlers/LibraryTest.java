@@ -18,6 +18,7 @@ public class LibraryTest {
     @BeforeEach
     void runBefore() {
         library = new Library();
+        library.loadDefault();
     }
     
     @Test
@@ -32,6 +33,19 @@ public class LibraryTest {
         library.addSongToLibrary("fresh beats", "linkpath");
         assertEquals(6, library.getSongLibrary().size());
         assertEquals("fresh beats", library.getSongLibrary().get(5).getTitle());
+    }
+
+    @Test
+    void setSongAlbumForLibrary() {
+        library.addSongToLibrary("a", "b");
+        try {
+            Song thisSong = library.searchSong("a");
+            library.songAlbum("yoy", "woy", thisSong);
+            assertEquals(thisSong.getAlbum().getName(), "yoy");
+            assertEquals(thisSong.getCreator().getName(), "woy");
+        } catch (SongNotFoundException e) {
+            fail();
+        }
     }
 
     @Test

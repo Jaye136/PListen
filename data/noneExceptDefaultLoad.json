@@ -6,7 +6,7 @@
             "creator": "",
             "album": "",
             "songGenre": "",
-            "durationInseconds": "0",
+            "durationInseconds": 0,
             "colour": "0xc3cdde",
             "likedStatus": "false"
         },

@@ -2,10 +2,11 @@ package persistence;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import model.handlers.Library;
-import persistence.exceptions.InvalidFileException;
 
 public class LibraryWriterTest { // referenced from JsonSerialisationDemo from CPSC210
 
@@ -16,7 +17,7 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
             LibraryWriter write = new LibraryWriter("./data/null.json");
             write.writeJson(saveThis);
             fail();
-        } catch (InvalidFileException e) {
+        } catch (IOException e) {
             // success
         }
     }
@@ -31,7 +32,7 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
             LibraryLoader load = new LibraryLoader("./data/emptyWrite");
             saveThis = load.readJson();
             assertEquals(saveThis.getSongLibrary().size(), 0);
-        } catch (InvalidFileException e) {
+        } catch (IOException e) {
             fail();
         }
     }
@@ -47,7 +48,7 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
             LibraryLoader load = new LibraryLoader("./data/noneExceptDefaultWrite");
             saveThis = load.readJson();
             assertEquals(saveThis.getSongLibrary().size(), 5);
-        } catch (InvalidFileException e) {
+        } catch (IOException e) {
             fail();
         }
     }

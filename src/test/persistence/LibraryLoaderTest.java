@@ -2,10 +2,11 @@ package persistence;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import model.handlers.Library;
-import persistence.exceptions.InvalidFileException;
 
 public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from CPSC210
 
@@ -15,7 +16,7 @@ public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from C
         try {
             load.readJson();
             fail("no such file");
-        } catch (InvalidFileException e) {
+        } catch (IOException e) {
             System.out.println("expected");
         }
     }
@@ -28,7 +29,7 @@ public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from C
             assertEquals(loadLib.getSongLibrary().size(), 0);
             assertEquals(loadLib.getAlbumLibrary().size(), 0);
             assertEquals(loadLib.getArtistLibrary().size(), 0);
-        } catch (InvalidFileException e) {
+        } catch (IOException e) {
             fail("file exists");
         }
     }
@@ -41,7 +42,7 @@ public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from C
             assertEquals(loadLib.getSongLibrary().size(), 5);
             assertEquals(loadLib.getAlbumLibrary().size(), 2);
             assertEquals(loadLib.getArtistLibrary().size(), 2);
-        } catch (InvalidFileException e) {
+        } catch (IOException e) {
             fail("file exists");
         }
     }

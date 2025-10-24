@@ -3,6 +3,9 @@ package model.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import model.data.collections.*;
 import model.data.exceptions.*;
 import model.data.plain.*;
@@ -99,12 +102,12 @@ public class Library {
     // MODIFIES: this
     // EFFECTS: add artist to list of available artists in program, if there
     // are no other artists by the same name, then set song's artist
-    public void songArtist(String title, Song song) {
+    public void songArtist(String name, Song song) {
         try {
-            Artist artistFind = searchArtist(title);
+            Artist artistFind = searchArtist(name);
             song.setCreator(artistFind);
         } catch (ArtistNotFoundException e) {
-            Artist artistExist = new Artist(title);
+            Artist artistExist = new Artist(name);
             artistLibrary.add(artistExist);
             song.setCreator(artistExist);
         }
@@ -140,22 +143,29 @@ public class Library {
     // MODIFIES: this
     // EFFECTS: add saved song data to library. For stored songs only. For other
     // uses, please use the addToLibrary(String title, String link) method.
-    public void loadSongToLibrary(Song song) {
-    }
+    public void loadSongToLibrary(JSONObject jsonSong) {
+        String title = jsonSong.getString("title");
+        String link = jsonSong.getString("link");
+        addSongToLibrary(title, link);
+        String creator = jsonSong.getString("creator");
+        String album = jsonSong.getString("album");
+        try {
+            Song loadedSong = searchSong(title);
+            songArtist(creator, loadedSong);
+            songAlbum(album, creator, loadedSong);
+            String songGenre = jsonSong.getString("songGenre");
+            loadedSong.setGenre(Genre.valueOf(songGenre));
+            int durationInSeconds = jsonSong.getInt("durationInSeconds");
+            loadedSong.setDuration(durationInSeconds);
+            int colour = Integer.valueOf(jsonSong.getString("colour"));
+            loadedSong.setColour(colour);
+            Boolean likedStatus = Boolean.valueOf(jsonSong.getString("likedStatus"));
+            loadedSong.switchLikedStatus(likedStatus);
+        } catch (SongNotFoundException e) {
+            e.printStackTrace();
+        }
 
-    // MODIFIES: this
-    // EFFECTS: add saved playlist data to library
-    public void loadPlayToLibrary(Playlist playlist) {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: add saved artist data to library
-    public void loadArtistToLibrary(Artist artist) {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: add saved album data to library
-    public void loadAlbumToLibrary(Album album) {
+        
     }
 
     // EFFECTS: getter (only for testing)

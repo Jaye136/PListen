@@ -93,44 +93,14 @@ public class LibraryTest {
         }
     }
 
-    @Test
-    void loadSongToLibraryTest() {
-        Song testSong = new Song("a", "b");
-        library.loadSongToLibrary(testSong);
-        try {
-            assertEquals(testSong, library.searchSong("a"));
-        } catch (SongNotFoundException e) {
-            fail();
-        }
-    }
-
-    @Test
-    void loadPlayToLibraryTest() {
-        Playlist testPlay = new Playlist();
-        library.loadPlayToLibrary(testPlay);
-        assertEquals(testPlay, library.getPlayLibrary().size());
-    }
-
-    @Test
-    void loadArtistToLibraryTest() {
-        Artist testArtist = new Artist("a");
-        library.loadArtistToLibrary(testArtist);
-        try {
-            assertEquals(testArtist, library.searchArtist("a"));
-        } catch (ArtistNotFoundException e) {
-            fail();
-        }
-    }
-
-    @Test
-    void loadAlbumToLibraryTest() {
-        Album testAlbum = new Album("a");
-        library.loadAlbumToLibrary(testAlbum);
-        try {
-            assertEquals(testAlbum, library.searchAlbum("a"));
-        } catch (AlbumNotFoundException e) {
-            fail();
-        }
-    }
-
+    // @Test
+    // void loadSongToLibraryTest() {
+    //     Song testSong = new Song("a", "b");
+    //     library.loadSongToLibrary(testSong);
+    //     try {
+    //         assertEquals(testSong, library.searchSong("a"));
+    //     } catch (SongNotFoundException e) {
+    //         fail();
+    //     }
+    // }
 }

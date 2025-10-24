@@ -1,7 +1,8 @@
 package persistence;
 
+import java.io.IOException;
+
 import model.handlers.Library;
-import persistence.exceptions.InvalidFileException;
 
 public class LibraryWriter { // referenced from JsonSerialisationDemo from CPSC210
     private String saveTo;
@@ -11,7 +12,7 @@ public class LibraryWriter { // referenced from JsonSerialisationDemo from CPSC2
     public LibraryWriter(String filepath) {}
 
     // EFFECTS: open and write save data into the given JSON file.
-    // Closes writer after successful save. Throws InvalidFileException
+    // Closes writer after successful save. Throws IOException
     // if the given file cannot be written in.
-    public void writeJson(Library libraryToSave) throws InvalidFileException {}
+    public void writeJson(Library libraryToSave) throws IOException {}
 }

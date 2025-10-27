@@ -39,7 +39,7 @@ The required information can be referenced below. Unentered non-necessary inform
 ### Playlist Options
 Playlists can be created by going to <ins>*My Playlists > New Playlist+*</ins>. After creating a playlist, users can
  then go to <ins>*Library > Songs*</ins> for a list of all songs in the library by the order that they were added, or
- <ins>*Library > Search Library > Search by...*</ins> to search using a specified genre, artist name, titleZ, etc.<br>
+ <ins>*Library > Search Library > Search by...*</ins> to search using a specified genre, artist name, title, etc.<br>
 Once the desired song is found, it can be added to the playlist by clicking the three dots, and then selecting <ins>*Add
  to playlist > [Playlist name]*</ins>.
   
@@ -63,32 +63,35 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
  concern.
 
 [Program entered]<br>
-➥ [Library]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [New Song+]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [Search Library]<br>
+➥ [View library]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [New song+ ✓]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [Search library]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Search by...]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Song title]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Artist]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Artists]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Name]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Album]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Genre]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Duration (truncated to minute)]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Albums]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Albums]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Genres]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Liked songs]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of Songs]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of songs]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Display of songs ✓]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [⋮]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Like/unlike song]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to next]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to queue]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to next ✓]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to queue ✓]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to playlist]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of playlists]<br>
-➥ [Playlists]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [New Playlist+]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [My Playlists]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of songs]<br>
-➥ [Queue Options]<br>
+➥ [View playlists]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [New playlist+]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [My playlists]<br>
+➥ [Queue options]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [Play queue]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [View queue]<br>
-➥ [Quit Program]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [View queue ✓]<br>
+➥ [Save/load data]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [Save library ✓]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;➥ [Load library ✓]<br>
+➥ [Quit program ✓]<br>
   
   
 ### About the Program

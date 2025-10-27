@@ -25,6 +25,15 @@ public class Options {
     }
 
     // EFFECTS: welcome user, show available options
+    private void startViewDisplay() {
+        print("\nEnter all options exactly.");
+        print("  > View library");
+        print("  > View playlists");
+        print("  > Queue options");
+        print("  > Save/load data");
+        print("  > Quit program\n");
+    }
+
     public void startView() {
         if (Main.undecided) {
 
@@ -38,62 +47,19 @@ public class Options {
             } else if (ckop("View playlists") || dop("p")) {
                 longLine();
                 playlistOptions();
-            } else if (ckop("Queue Options") || dop("q")) {
+            } else if (ckop("Queue options") || dop("q")) {
                 longLine();
                 queueOptions();
             } else if (ckop("Save/load data") || dop("sl")) {
                 longLine();
                 slOptions();
-            } else if (ckop("Quit Program") || dop("qq")) {
-                longLine();
+            } else if (ckop("Quit program") || dop("qq")) {
                 Main.undecided = false;
             } else if (ckop("konamicode") && !debugMode) {
-                debugMode = true;
-                print("\nNice!");
-                longLine();
+                debugToggle();
             } else {
                 notValid();
             }
-        }
-    }
-
-    private void startViewDisplay() {
-        print("\nEnter all options exactly.");
-        print("  > View library");
-        print("  > View playlists");
-        print("  > Queue Options");
-        print("  > Save/load data");
-        print("  > Quit program\n");
-    }
-
-    // EFFECTS: show save/load options
-    private void slOptions() {
-        print("\nEnter all options exactly.");
-        print("  > Save library");
-        print("  > Load library\n");
-
-        select = userInput.nextLine();
-
-        if (ckop("Save library") || dop("s")) {
-            try {
-                writer = new LibraryWriter("./data/librarySave.json");
-                writer.writeJson(Main.library);
-                System.out.println("Saved successfully.");
-                longLine();
-            } catch (FileNotFoundException e) {
-                System.out.println("Unable to write to file.");
-            }
-        } else if (ckop("Load library") || dop("l")) {
-            try {
-                loader = new LibraryLoader("./data/librarySave.json");
-                Main.library = loader.readJson();
-                System.out.println("Loaded successfully.");
-                longLine();
-            } catch (IOException e) {
-                System.out.println("Unable to load file.");
-            }
-        } else {
-            notValid();
         }
     }
 
@@ -101,19 +67,19 @@ public class Options {
     private void libraryOptions() {
         if (Main.undecided) {
             print("\nEnter all options exactly.");
-            print("  > New Song+");
-            print("  > Search Library");
-            print("  > List of Songs");
+            print("  > New song+");
+            print("  > Search library");
+            print("  > List of songs");
             print("  > Back\n");
 
             select = userInput.nextLine();
 
-            if (ckop("New Song+") || dop("n")) {
+            if (ckop("New song+") || dop("n")) {
                 longLine();
                 newSongMenu();
-            } else if (ckop("Search Library") || dop("s")) {
+            } else if (ckop("Search library") || dop("s")) {
                 print("\nTODO");
-            } else if (ckop("List of Songs") || dop("l")) {
+            } else if (ckop("List of songs") || dop("l")) {
                 longLine();
                 viewSongs();
             } else if (ckop("Back") || dop("b")) {
@@ -126,11 +92,6 @@ public class Options {
         }
     }
 
-    private void playlistOptions() {
-        print("\nNew Playlist+");
-        print("TODO\n");
-    }
-
     private void newSongMenu() {
         print("\nEnter the name of your song\n");
         String title = userInput.nextLine();
@@ -140,7 +101,7 @@ public class Options {
 
         Main.library.addSongToLibrary(title, link);
 
-        print("Added succesfully!");
+        print("Added successfully!");
         longLine();
         libraryOptions();
     }
@@ -212,6 +173,13 @@ public class Options {
         print("  > Back\n");
     }
 
+    // EFFECTS: display playlist options
+    private void playlistOptions() {
+        print("\nNew playlist+");
+        print("TODO\n");
+    }
+
+    // EFFECTS; display queue options
     private void queueOptions() {
         if (Main.undecided) {
             print("\nEnter all options exactly.");
@@ -255,6 +223,48 @@ public class Options {
             }
             viewSongsQueue();
         }
+    }
+
+    // EFFECTS: show save/load options
+    private void slOptionsDisplay() {
+        print("\nEnter all options exactly.");
+        print("  > Save library");
+        print("  > Load library\n");
+    }
+
+    private void slOptions() {
+        slOptionsDisplay();
+
+        select = userInput.nextLine();
+
+        if (ckop("Save library") || dop("s")) {
+            try {
+                writer = new LibraryWriter("./data/librarySave.json");
+                writer.writeJson(Main.library);
+                System.out.println("Saved successfully.");
+                longLine();
+            } catch (FileNotFoundException e) {
+                System.out.println("Unable to write to file.");
+            }
+        } else if (ckop("Load library") || dop("l")) {
+            try {
+                loader = new LibraryLoader("./data/librarySave.json");
+                Main.library = loader.readJson();
+                System.out.println("Loaded successfully.");
+                longLine();
+            } catch (IOException e) {
+                System.out.println("Unable to load file.");
+            }
+        } else {
+            notValid();
+        }
+    }
+
+    // EFFECTS: toggle debug
+    private void debugToggle() {
+        debugMode = true;
+        print("\nNice!");
+        longLine();
     }
 
     // TEXT UTILITY FUNCTIONS

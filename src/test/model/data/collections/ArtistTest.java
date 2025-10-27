@@ -55,6 +55,14 @@ public class ArtistTest extends CollectionTest {
     }
 
     @Test
+    void addDupeAlbums() {
+        forArtistMethods.addAlbum(testAlbum);
+        forArtistMethods.addAlbum(testAlbum);
+        List<Album> whatAlbums = forArtistMethods.getAlbums();
+        assertEquals(1, whatAlbums.size());
+    }
+
+    @Test
     void removeOneAlbum() {
         forArtistMethods.addAlbum(testAlbum);
         List<Album> whatAlbums = forArtistMethods.getAlbums();

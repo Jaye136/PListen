@@ -61,35 +61,56 @@ public class Song { // could also make podcast subclass
     // EFFECTS: changes equals to check song information instead of object ID
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Song other = (Song) obj;
         if (title == null) {
-            if (other.title != null)
+            if (other.title != null) {
                 return false;
-        } else if (!title.equals(other.title))
+            }
+        } else if (!title.equals(other.title)) {
             return false;
+        }
+        return continueEqualsOne(other);
+    }
+
+    private boolean continueEqualsOne(Song other) {
         if (link == null) {
-            if (other.link != null)
+            if (other.link != null) {
                 return false;
-        } else if (!link.equals(other.link))
+            }
+        } else if (!link.equals(other.link)) {
             return false;
-        if (!creator.equals(other.creator))
+        }
+        if (!creator.equals(other.creator)) {
             return false;
-        if (!album.equals(other.album))
+        }
+        if (!album.equals(other.album)) {
             return false;
-        if (songGenre != other.songGenre)
+        }
+        if (songGenre != other.songGenre) {
             return false;
-        if (durationInSeconds != other.durationInSeconds)
+        }
+        return continueEqualsTwo(other);
+    }
+
+    private boolean continueEqualsTwo(Song other) {
+        if (durationInSeconds != other.durationInSeconds) {
             return false;
-        if (colour != other.colour)
+        }
+        if (colour != other.colour) {
             return false;
-        if (!likedStatus.equals(other.likedStatus))
+        }
+        if (!likedStatus.equals(other.likedStatus)) {
             return false;
+        }
         return true;
     }
 

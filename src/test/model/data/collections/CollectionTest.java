@@ -144,7 +144,10 @@ public abstract class CollectionTest {
         assertNotEquals(testCollection, equalsAlbum);
         assertNotEquals(testCollection, equalsArtist);
         assertNotEquals(testCollection, equalsPlaylist);
+        hashEquals();
+    }
 
+    private void hashEquals() {
         if (testCollection.getClass() == Album.class) {
             equalsAlbum.setName(null);
             assertTrue(colHash.contains(equalsAlbum));

@@ -22,6 +22,7 @@ public class Main {
         while (undecided) {
             optionsMenuLoad.startView();
         }
+        System.out.println("\n----------------------");
         System.out.println("\nPListen has been closed successfully.");
     }
 }

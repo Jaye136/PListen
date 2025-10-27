@@ -28,8 +28,8 @@ public class Album extends Playlist {
         if (!this.contributor.equals(Library.getUnknownArtist())) {
             this.contributor.removeAlbum(this);
         }
-            this.contributor = contributor;
-            this.contributor.addAlbum(this);
+        this.contributor = contributor;
+        this.contributor.addAlbum(this);
     }
 
     // EFFECTS: getter

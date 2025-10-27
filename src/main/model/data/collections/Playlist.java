@@ -24,6 +24,13 @@ public class Playlist extends Collection {
         this.songs = new ArrayList<Song>();
     }
 
+    // MODIFIES: this
+    // EFFECTS: add the given song to song list, allowing duplicates
+    @Override
+    public void addSong(Song song) {
+        songs.add(song);
+    }
+
     // MODIFIES: song in this.songs
     // EFFECTS: mass like or unlike all songs in the playlist
     // t: mass like, f: mass unlike

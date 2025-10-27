@@ -108,40 +108,48 @@ public class Library {
             song.setCreator(artistFind);
         } catch (ArtistNotFoundException e) {
             Artist artistExist = new Artist(name);
-            if (artistExist != unknownArtist) {
+            if (!artistExist.equals(unknownArtist)) {
                 artistLibrary.add(artistExist);
+                song.setCreator(artistExist);
             }
-            song.setCreator(artistExist);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: add album to list of available albums in program, if there
-    // are no other albums by the same name, then set song's album
+    // are no other albums by the same name, then accurately sets song's album
     public void songAlbum(String albumTitle, String albumArtist, Song song) {
         try {
             Album albumFind = searchAlbum(albumTitle);
             song.setAlbum(albumFind);
             song.setCreator(albumFind.getContributor());
         } catch (AlbumNotFoundException e) {
-            try {
-                Artist artistFind = searchArtist(albumArtist);
-                Album albumArtistExist = new Album(albumTitle);
+            songAlbumAdd(albumTitle, albumArtist, song);
+        }
+    }
+
+    // EFFECTS: helper for songAlbum(), in the case that the given album is not
+    // found, or is unknown
+    private void songAlbumAdd(String albumTitle, String albumArtist, Song song) {
+        try {
+            Artist artistFind = searchArtist(albumArtist);
+            Album albumArtistExist = new Album(albumTitle);
+            if (!albumArtistExist.equals(unknownAlbum)) {
                 albumArtistExist.setContributor(artistFind);
-                if (albumArtistExist != unknownAlbum) {
-                    albumLibrary.add(albumArtistExist);
-                }
+                albumLibrary.add(albumArtistExist);
                 song.setAlbum(albumArtistExist);
-                song.setCreator(artistFind);
-            } catch (ArtistNotFoundException ex) {
-                Artist artistExist = new Artist(albumArtist);
-                Album albumArtistExist = new Album(albumTitle);
-                albumArtistExist.setContributor(artistExist);
-                if (albumArtistExist != unknownAlbum) {
-                    albumLibrary.add(albumArtistExist);
-                }
+            }
+        } catch (ArtistNotFoundException ex) {
+            Artist artistExist = new Artist(albumArtist);
+            Album albumArtistExist = new Album(albumTitle);
+            if (!albumArtistExist.equals(unknownAlbum)) {
+                albumLibrary.add(albumArtistExist);
                 song.setAlbum(albumArtistExist);
-                song.setCreator(artistExist);
+                if (!artistExist.equals(unknownArtist)) {
+                    albumArtistExist.setContributor(artistExist);
+                    artistLibrary.add(artistExist);
+                    song.setCreator(artistExist);
+                }
             }
         }
     }

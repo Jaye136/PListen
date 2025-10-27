@@ -25,11 +25,11 @@ public class Album extends Playlist {
     // EFFECTS: set the given artist as the contributor, remove this from
     // the old artist, and add this to artist's albums
     public void setContributor(Artist contributor) {
-        if (this.contributor != Library.getUnknownArtist()) {
+        if (!this.contributor.equals(Library.getUnknownArtist())) {
             this.contributor.removeAlbum(this);
         }
-        this.contributor = contributor;
-        this.contributor.addAlbum(this);
+            this.contributor = contributor;
+            this.contributor.addAlbum(this);
     }
 
     // EFFECTS: getter

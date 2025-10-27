@@ -40,7 +40,7 @@ public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from C
         try {
             Library loadLib = load.readJson();
             assertEquals(loadLib.getSongLibrary().size(), 5);
-            assertEquals(loadLib.getAlbumLibrary().size(), 3);
+            assertEquals(loadLib.getAlbumLibrary().size(), 2);
             assertEquals(loadLib.getArtistLibrary().size(), 2);
         } catch (IOException e) {
             fail("file exists");

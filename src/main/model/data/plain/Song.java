@@ -137,7 +137,7 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the artist for this song, remove this song from the old artist,
     // and add this song to the artist's created songs
     public void setCreator(Artist creator) {
-        if (this.creator != Library.getUnknownArtist()) {
+        if (!this.creator.equals(Library.getUnknownArtist())) {
             this.creator.removeSong(this);
         }
         this.creator = creator;
@@ -148,11 +148,11 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the album for this song, remove this song from the old album,
     // and add this song to the album's songs
     public void setAlbum(Album album) {
-        if (this.album != Library.getUnknownAlbum()) {
+        if (!this.album.equals(Library.getUnknownAlbum())) {
             this.album.removeSong(this);
         }
         this.album = album;
-        this.creator.addSong(this);
+        this.album.addSong(this);
     }
 
     // MODIFIES: this

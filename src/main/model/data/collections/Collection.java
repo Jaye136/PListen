@@ -75,9 +75,11 @@ public abstract class Collection {
     }
 
     // MODIFIES: this
-    // EFFECTS: add the given song to song list
+    // EFFECTS: add the given song to song list, only if it is unique
     public void addSong(Song song) {
-        songs.add(song);
+        if (!songs.contains(song)) {
+            songs.add(song);
+        }
     }
 
     // MODIFIES: this

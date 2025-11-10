@@ -44,7 +44,7 @@ public class SongTest {
         assertEquals("linkpath", testSong.getLink());
         assertEquals(Genre.UNKNOWN, testSong.getSongGenre());
         assertEquals(0, testSong.getDuration());
-        assertEquals(0xc3cdde, testSong.getCoverColour());
+        assertEquals("#c3cdde", testSong.getCoverColour());
         assertFalse(testSong.getLikedStatus());
     }
 
@@ -100,8 +100,8 @@ public class SongTest {
 
     @Test
     void changeCoverColour() {
-        testSong.setColour(0x000000);
-        assertEquals(0x000000, testSong.getCoverColour());
+        testSong.setColour("#000000");
+        assertEquals("#000000", testSong.getCoverColour());
     }
 
     @Test
@@ -187,9 +187,9 @@ public class SongTest {
 
     @Test
     void checkModdedEqualsColour() {
-        equalsSong.setColour(0x000000);
+        equalsSong.setColour("#000000");
         assertNotEquals(equalsSong, testSong);
-        equalsSong.setColour(0xc3cdde);
+        equalsSong.setColour("#c3cdde");
         assertEquals(equalsSong, testSong);
     }
 

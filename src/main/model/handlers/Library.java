@@ -10,7 +10,7 @@ import model.data.collections.*;
 import model.data.exceptions.*;
 import model.data.plain.*;
 
-// CLASS DOCUMENT: a handler to read and initialise user data.
+// CLASS DOCUMENTATION: a handler to read and initialise user data.
 
 public class Library {
     private List<Song> songLibrary;
@@ -76,7 +76,7 @@ public class Library {
 
         songArtist("chachaBoomer", songLibrary.get(1));
         songLibrary.get(1).setGenre(Genre.HIPRAP);
-        songLibrary.get(1).setColour(0x000000);
+        songLibrary.get(1).setColour("#000000");
 
         songArtist("istArtist the trAtsi", songLibrary.get(2));
         songLibrary.get(2).setDuration(75);
@@ -84,7 +84,7 @@ public class Library {
 
         songAlbum("wanting to MOVE!", "chachaBoomer", songLibrary.get(3));
         songLibrary.get(3).setGenre(Genre.HIPRAP);
-        songLibrary.get(3).setColour(0xFFFFFF);
+        songLibrary.get(3).setColour("#FFFFFF");
 
         songAlbum("feeling sleepy...", "istArtist the trAtsi", songLibrary.get(4));
         songLibrary.get(4).setGenre(Genre.JAZZ);
@@ -165,7 +165,7 @@ public class Library {
         String album = jsonSong.getString("album");
         String songGenre = jsonSong.getString("songGenre");
         int durationInSeconds = jsonSong.getInt("durationInSeconds");
-        int colour = Integer.valueOf(jsonSong.getString("colour"));
+        String colour = jsonSong.getString("colour");
         Boolean likedStatus = Boolean.valueOf(jsonSong.getString("likedStatus"));
         try {
             Song loadedSong = searchSong(title);
@@ -176,7 +176,7 @@ public class Library {
             loadedSong.setColour(colour);
             loadedSong.switchLikedStatus(likedStatus);
         } catch (SongNotFoundException e) {
-            e.printStackTrace();
+            // will never happen
         }
     }
 
@@ -201,10 +201,10 @@ public class Library {
         return songLibrary;
     }
 
-    // EFFECTS: getter (only for testing)
-    public List<Playlist> getPlayLibrary() {
-        return playLibrary;
-    }
+    // // EFFECTS: getter (only for testing)
+    // public List<Playlist> getPlayLibrary() {
+    //     return playLibrary;
+    // }
 
     // EFFECTS: getter (only for testing)
     public List<Artist> getArtistLibrary() {

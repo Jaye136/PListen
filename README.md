@@ -88,7 +88,7 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
 ➥ [Queue options]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [Play queue]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [View queue ✓]<br>
-➥ [Save/load data]<br>
+➥ [Save/load data ✓]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [Save library ✓]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;➥ [Load library ✓]<br>
 ➥ [Quit program ✓]<br>

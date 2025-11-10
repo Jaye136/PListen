@@ -2,6 +2,7 @@ package model.data.plain;
 
 import org.json.JSONObject;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.collections.Album;
 import model.data.collections.Artist;
 import model.handlers.Library;
@@ -40,10 +41,12 @@ public class Song { // could also make podcast subclass
     private Album album;
     private Genre songGenre;
     private int durationInSeconds;
-    private int colour;
+    private String colour;
     private Boolean likedStatus;
 
     @Override
+    @ExcludeFromJacocoGeneratedReport
+    // TA added during phase 2 grading, as hashcode testing is not necessary
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -53,7 +56,7 @@ public class Song { // could also make podcast subclass
         result = prime * result + ((album == null) ? 0 : album.hashCode());
         result = prime * result + ((songGenre == null) ? 0 : songGenre.hashCode());
         result = prime * result + durationInSeconds;
-        result = prime * result + colour;
+        result = prime * result + ((colour == null) ? 0 : colour.hashCode());
         result = prime * result + ((likedStatus == null) ? 0 : likedStatus.hashCode());
         return result;
     }
@@ -105,7 +108,7 @@ public class Song { // could also make podcast subclass
         if (durationInSeconds != other.durationInSeconds) {
             return false;
         }
-        if (colour != other.colour) {
+        if (!colour.equals(other.colour)) {
             return false;
         }
         if (!likedStatus.equals(other.likedStatus)) {
@@ -124,7 +127,7 @@ public class Song { // could also make podcast subclass
         this.album = Library.getUnknownAlbum();
         this.songGenre = Genre.UNKNOWN;
         this.durationInSeconds = 0;
-        this.colour = 0xc3cdde;
+        this.colour = "#c3cdde";
         this.likedStatus = false;
     }
 
@@ -137,7 +140,7 @@ public class Song { // could also make podcast subclass
         json.put("album", album.getName());
         json.put("songGenre", songGenre.toString());
         json.put("durationInSeconds", durationInSeconds);
-        json.put("colour", String.valueOf(colour));
+        json.put("colour", colour);
         json.put("likedStatus", String.valueOf(likedStatus));
         return json;
     }
@@ -190,7 +193,7 @@ public class Song { // could also make podcast subclass
 
     // MODIFIES: this
     // EFFECTS: set the display colour for this song in HEX
-    public void setColour(int colour) {
+    public void setColour(String colour) {
         this.colour = colour;
     }
 
@@ -231,7 +234,7 @@ public class Song { // could also make podcast subclass
     }
 
     // EFFECTS: getter
-    public int getCoverColour() {
+    public String getCoverColour() {
         return colour;
     }
 

@@ -6,7 +6,11 @@ import java.io.*;
 
 import model.handlers.Library;
 
-public class LibraryWriter { // referenced from JsonSerialisationDemo from CPSC210
+// CLASS DOCUMENTATION: a persistence handler to save the current
+// state of the library, and write it to a JSON file. Referenced
+// from JsonSerialisationDemo from CPSC210.
+
+public class LibraryWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
     private String saveTo;

@@ -26,6 +26,7 @@ public class LibraryTest {
         assertEquals("mysterious tunes", library.getSongLibrary().get(2).getTitle());
     }
 
+
     @Test
     void libraryNoneToOne() {
         assertEquals(5, library.getSongLibrary().size());
@@ -91,15 +92,4 @@ public class LibraryTest {
             System.out.println("task successfully failed");
         }
     }
-
-    // @Test
-    // void loadSongToLibraryTest() {
-    //     Song testSong = new Song("a", "b");
-    //     library.loadSongToLibrary(testSong);
-    //     try {
-    //         assertEquals(testSong, library.searchSong("a"));
-    //     } catch (SongNotFoundException e) {
-    //         fail();
-    //     }
-    // }
 }

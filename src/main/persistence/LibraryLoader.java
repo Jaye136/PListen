@@ -9,6 +9,10 @@ import java.util.stream.Stream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+// CLASS DOCUMENTATION: a persistence handler to load the
+// previously saved state of the library from a JSON file.
+// Referenced from JsonSerialisationDemo from CPSC210.
+
 import model.handlers.Library;
 
 public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC210

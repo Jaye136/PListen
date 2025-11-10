@@ -1,7 +1,7 @@
 {"songLibrary": [
     {
         "creator": "chachaBoomer",
-        "colour": "12832222",
+        "colour": "#c3cdde",
         "likedStatus": "false",
         "durationInSeconds": 0,
         "album": "wanting to MOVE!",
@@ -11,7 +11,7 @@
     },
     {
         "creator": "chachaBoomer",
-        "colour": "0",
+        "colour": "#000000",
         "likedStatus": "false",
         "durationInSeconds": 0,
         "album": "unknown",
@@ -21,7 +21,7 @@
     },
     {
         "creator": "istArtist the trAtsi",
-        "colour": "12832222",
+        "colour": "#c3cdde",
         "likedStatus": "true",
         "durationInSeconds": 75,
         "album": "unknown",
@@ -31,7 +31,7 @@
     },
     {
         "creator": "chachaBoomer",
-        "colour": "16777215",
+        "colour": "#FFFFFF",
         "likedStatus": "false",
         "durationInSeconds": 0,
         "album": "wanting to MOVE!",
@@ -41,7 +41,7 @@
     },
     {
         "creator": "istArtist the trAtsi",
-        "colour": "12832222",
+        "colour": "#c3cdde",
         "likedStatus": "false",
         "durationInSeconds": 80,
         "album": "feeling sleepy...",
@@ -51,7 +51,7 @@
     },
     {
         "creator": "unknown",
-        "colour": "12832222",
+        "colour": "#c3cdde",
         "likedStatus": "false",
         "durationInSeconds": 0,
         "album": "unknown",

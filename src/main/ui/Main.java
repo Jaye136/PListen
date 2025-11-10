@@ -3,6 +3,7 @@ package ui;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.handlers.Library;
 import model.handlers.PlayHandler;
+import ui.gui.MainWindow;
 
 @ExcludeFromJacocoGeneratedReport
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
     static PlayHandler playHandler;
 
     public static void main(String[] args) {
+        new MainWindow();
         library = new Library();
         library.loadDefault();
         playHandler = new PlayHandler();

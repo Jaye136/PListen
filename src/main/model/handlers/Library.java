@@ -14,7 +14,7 @@ import model.data.plain.*;
 
 public class Library {
     private List<Song> songLibrary;
-    private List<Playlist> playLibrary;
+    // private List<Playlist> playLibrary;
     private List<Artist> artistLibrary;
     private List<Album> albumLibrary;
     private static Artist unknownArtist;
@@ -26,7 +26,7 @@ public class Library {
     // EFFECTS: initialise the default library
     public Library() {
         songLibrary = new ArrayList<Song>();
-        playLibrary = new ArrayList<Playlist>();
+        // playLibrary = new ArrayList<Playlist>();
         artistLibrary = new ArrayList<Artist>();
         albumLibrary = new ArrayList<Album>();
         defaultValues();

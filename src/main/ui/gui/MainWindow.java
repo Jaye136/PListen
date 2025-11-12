@@ -9,6 +9,11 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 @ExcludeFromJacocoGeneratedReport
 public class MainWindow extends JFrame {
+    static final String DARKEST = "#1B1B1C";
+    static final String DARKER = "#232325";
+    static final String DARK = "#2a2b2d";
+    static final String DAIKON = "#F2F2F3";
+
     private int frameSizeX;
     private int frameSizeY;
     private JFrame mainWindow;
@@ -23,6 +28,7 @@ public class MainWindow extends JFrame {
         initialise();
     }
 
+    // MODIFIES: this
     // EFFECTS: the main window for the application. Display size is set and
     // cannot be changed for sake of alignment consistency
     private void initialise() {
@@ -31,7 +37,7 @@ public class MainWindow extends JFrame {
         mainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainWindow.setLayout(null);
         mainWindow.setSize(frameSizeX, frameSizeY);
-        mainWindow.getContentPane().setBackground(Color.decode("#2a2b2d"));
+        mainWindow.getContentPane().setBackground(Color.decode(DARKEST));
 
         disPlayPanel();
         optMenuPanel();
@@ -41,27 +47,43 @@ public class MainWindow extends JFrame {
         mainWindow.setVisible(true);
     }
 
+    // MODIFIES: this
     // EFFECTS: display the next song in the queue that will be played
     private void disPlayPanel() {
-        PanelStyle disPlayCust = new PanelStyle("#1B1B1C", 0, 500, 240, 100);
-        disPlay = disPlayCust.getPanel();
+        disPlay = new DisPlay();
         mainWindow.add(disPlay);
     }
 
+    // MODIFIES: this
     // EFFECTS: format a display for the left panel of the application, which
     // contains all option buttons
     private void optMenuPanel() {
-        PanelStyle menuCustPanel = new PanelStyle("#232325", 0, 0, 240, 500);
-        menuPanel = menuCustPanel.getPanel();
+        menuPanel = new MenuPanel();
         mainWindow.add(menuPanel);
     }
 
+    // MODIFIES: this
     // EFFECTS: format the info display for the right panel of the application,
     // which holds all library and selected song information
     private void infoPagePanel() {
-        PanelStyle infoCustPanel = new PanelStyle("#2a2b2d", 240, 0, 780, 600);
-        infoPanel = infoCustPanel.getPanel();
+        infoPanel = new InfoPanel();
         mainWindow.add(infoPanel);
+    }
+
+    public static String getDarkest() {
+        return DARKEST;
+    }
+
+    public static String getDarker() {
+        return DARKER;
+    }
+
+    public static String getDark() {
+        return DARK;
+    }
+
+    public static String getDaikon() {
+        return DAIKON;
     }
 
 }

@@ -22,7 +22,6 @@ public class ButtonStyle extends JButton {
         setBounds(coordX, coordY, width, height);
         setMargin(new Insets(1, 1, 1, 1));
         setBorderPainted(false);
-        setContentAreaFilled(false);
         setFocusPainted(false);
         setFocusable(false);
     }

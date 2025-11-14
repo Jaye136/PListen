@@ -32,7 +32,7 @@ public class DisPlay extends PanelStyle {
     // ▷ ↺
 
     // EFFECTS: a constructor for the current behaviour of the display panel
-    // based on the song queue. Starts out empty
+    // based on the song queue. Starts out in empty state
     public DisPlay() {
         super(MainWindow.DARKEST, 7, 500, 973, 60);
         setUpLabels();
@@ -65,6 +65,12 @@ public class DisPlay extends PanelStyle {
         unLikeButton = new ButtonStyle(unLiked, 37, 3, 30, 50, 50);
         playButton = new ButtonStyle(playing, 97, 15, 25, 25, 25);
         nextButton = new ButtonStyle(next, 132, 8, 20, 60, 40);
+
+        likeButton.setContentAreaFilled(false);
+        unLikeButton.setContentAreaFilled(false);
+        playButton.setContentAreaFilled(false);
+        nextButton.setContentAreaFilled(false);
+
         setUpLikeUnlike();
         setUpPlay();
         setUpNext();

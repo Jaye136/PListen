@@ -1,9 +1,10 @@
 package ui.gui;
 
 import java.awt.Color;
+import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
@@ -17,9 +18,9 @@ public class MainWindow extends JFrame {
     private int frameSizeX;
     private int frameSizeY;
     private JFrame mainWindow;
-    private JPanel disPlay;
-    private JPanel menuPanel;
-    private JPanel infoPanel;
+    static DisPlay disPlay;
+    static MenuPanel menuPanel;
+    static InfoPanel infoPanel;
 
     // EFFECTS: construct an instance of the application
     public MainWindow() {

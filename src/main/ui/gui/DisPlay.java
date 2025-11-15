@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.plain.Song;
-// import model.handlers.Library;
 import model.handlers.PlayHandler;
+import ui.Main;
 import ui.gui.components.*;
 
 @ExcludeFromJacocoGeneratedReport
@@ -35,14 +35,10 @@ public class DisPlay extends PanelStyle {
     // based on the song queue. Starts out in empty state
     public DisPlay() {
         super(MainWindow.DARKEST, 7, 500, 973, 60);
+        this.queue = Main.getPlayHandler();
         setUpLabels();
         setUpButtons();
         emptyState();
-        // Library.defaultValues();
-        // queue = new PlayHandler();
-        // queue.playSongNow(new Song("a", "b"));
-        // queue.nextAddSong(new Song("c", "d"));
-        // updateQueue(queue);
     }
 
     // MODIFIES: this
@@ -58,8 +54,6 @@ public class DisPlay extends PanelStyle {
 
     // MODIFIES: this
     // EFFECTS: set up the play/next on/off button behaviours
-    // NOTE: code in helpers learned from ActionListener video tutorial on
-    // https://www.youtube.com/watch?v=ObVnyA8ar6Q&list=PL3bGLnkkGnuV699lP_f9DvxyK5lMFpq6U&index=10
     private void setUpButtons() {
         likeButton = new ButtonStyle(liked, 37, 3, 30, 50, 50);
         unLikeButton = new ButtonStyle(unLiked, 37, 3, 30, 50, 50);
@@ -110,7 +104,7 @@ public class DisPlay extends PanelStyle {
                 int delay = 800;
                 ActionListener taskPerformer = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        updateQueue(queue);
+                        updateQueue();
                     }
                 };
                 new javax.swing.Timer(delay, taskPerformer).start();
@@ -132,7 +126,7 @@ public class DisPlay extends PanelStyle {
                 int delay = 500;
                 ActionListener taskPerformer = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        updateQueue(queue);
+                        updateQueue();
                     }
                 };
                 new javax.swing.Timer(delay, taskPerformer).start();
@@ -179,8 +173,8 @@ public class DisPlay extends PanelStyle {
     // when play/next is pressed, queue is empty -> emptyState()
     // when play/next is pressed, queue is not empty -> songState()
     // when a song is added to the queue -> songState()
-    public void updateQueue(PlayHandler queue) {
-        this.queue = queue;
+    public void updateQueue() {
+        this.queue = Main.getPlayHandler();
         if (queue.getSongs().isEmpty()) {
             emptyState();
         } else {

@@ -1,4 +1,5 @@
 # PListen
+# NOTE TO SELF: scrollbar change colour, update this readme, add new song window
 **PListen** is a music player program, which stores information about songs in its database. Users will be able to
  add new songs to the library, as well as select them to add into playlists.
   

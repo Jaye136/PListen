@@ -67,10 +67,7 @@ public class Song { // could also make podcast subclass
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         Song other = (Song) obj;
@@ -92,26 +89,11 @@ public class Song { // could also make podcast subclass
         } else if (!link.equals(other.link)) {
             return false;
         }
-        if (!creator.equals(other.creator)) {
+        if (!creator.equals(other.creator) || !album.equals(other.album) || songGenre != other.songGenre) {
             return false;
         }
-        if (!album.equals(other.album)) {
-            return false;
-        }
-        if (songGenre != other.songGenre) {
-            return false;
-        }
-        return continueEqualsTwo(other);
-    }
-
-    private boolean continueEqualsTwo(Song other) {
-        if (durationInSeconds != other.durationInSeconds) {
-            return false;
-        }
-        if (!colour.equals(other.colour)) {
-            return false;
-        }
-        if (!likedStatus.equals(other.likedStatus)) {
+        if (durationInSeconds != other.durationInSeconds || !colour.equals(other.colour)
+                || !likedStatus.equals(other.likedStatus)) {
             return false;
         }
         return true;

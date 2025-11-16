@@ -48,8 +48,7 @@ public class PlayHandler extends Playlist {
     // MODIFIES: this
     // EFFECTS: (setter) replace current queue with given song
     public void playSongNow(Song song) {
-        queue = new ArrayList<Song>();
-        this.songs = queue;
+        queue.clear();
         queue.add(song);
     }
 
@@ -75,21 +74,13 @@ public class PlayHandler extends Playlist {
     // MODIFIES: this
     // EFFECTS: add all songs of given playlist to front of queue
     public void nextAddSongs(Playlist songs) {
-        List<Song> songsToAdd = songs.getSongs();
-        int songSizeIndex = songsToAdd.size() - 1;
-        while (songSizeIndex >= 0) {
-            queue.add(0, songsToAdd.get(songSizeIndex));
-            songSizeIndex = songSizeIndex - 1;
-        }
+        queue.addAll(0, songs.getSongs());
     }
 
     // MODIFIES: this
     // EFFECTS: add all songs of given playlist to back of queue
     public void queueAddSongs(Playlist songs) {
-        List<Song> songsToAdd = songs.getSongs();
-        for (Song song : songsToAdd) {
-            queue.add(song);
-        }
+        queue.addAll(songs.getSongs());
     }
 
     // EFFECTS: getter (using the more recognisable name based on the unique

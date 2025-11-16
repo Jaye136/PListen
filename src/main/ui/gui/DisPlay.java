@@ -14,8 +14,8 @@ import ui.gui.components.*;
 
 @ExcludeFromJacocoGeneratedReport
 public class DisPlay extends PanelStyle {
-    private final String unLiked = "☆";
-    private final String liked = "★";
+    static final String UNLIKED = "☆";
+    static final String LIKED = "★";
     private final String playing = "||";
     private final String next = "▷▷";
     private PlayHandler queue;
@@ -27,9 +27,6 @@ public class DisPlay extends PanelStyle {
     private JLabel playStatus;
     private JLabel songTitle;
     private JLabel songCreator;
-
-    // ▐ ▌ ▶ ☰ 𝘁𝗮𝗵𝗼𝗺𝗮 sans serif bold
-    // ▷ ↺
 
     // EFFECTS: a constructor for the current behaviour of the display panel
     // based on the song queue. Starts out in empty state
@@ -55,8 +52,8 @@ public class DisPlay extends PanelStyle {
     // MODIFIES: this
     // EFFECTS: set up the play/next on/off button behaviours
     private void setUpButtons() {
-        likeButton = new ButtonStyle(liked, 37, 3, 30, 50, 50);
-        unLikeButton = new ButtonStyle(unLiked, 37, 3, 30, 50, 50);
+        likeButton = new ButtonStyle(LIKED, 37, 3, 30, 50, 50);
+        unLikeButton = new ButtonStyle(UNLIKED, 37, 3, 30, 50, 50);
         playButton = new ButtonStyle(playing, 97, 15, 25, 25, 25);
         nextButton = new ButtonStyle(next, 132, 8, 20, 60, 40);
 
@@ -74,17 +71,21 @@ public class DisPlay extends PanelStyle {
     // EFFECTS: adds functionality to like/unlike buttons
     private void setUpLikeUnlike() {
         likeButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentlyPlaying.switchLikedStatus(false);
                 buttonState(true, false);
+                MainWindow.infoPanel.updateShown();
             }
         });
         unLikeButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentlyPlaying.switchLikedStatus(true);
                 buttonState(true, true);
+                MainWindow.infoPanel.updateShown();
             }
         });
         add(likeButton);
@@ -97,12 +98,15 @@ public class DisPlay extends PanelStyle {
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void setUpPlay() {
         playButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 songTitle.setText(queue.playSongQueue());
                 songCreator.setText("Played for " + currentlyPlaying.getDuration() + " seconds.");
                 int delay = 800;
                 ActionListener taskPerformer = new ActionListener() {
+                    @ExcludeFromJacocoGeneratedReport
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         updateQueue();
                     }
@@ -119,12 +123,15 @@ public class DisPlay extends PanelStyle {
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void setUpNext() {
         nextButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 queue.playSongQueue();
                 songTitle.setText("Skipping...");
                 int delay = 500;
                 ActionListener taskPerformer = new ActionListener() {
+                    @ExcludeFromJacocoGeneratedReport
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         updateQueue();
                     }
@@ -181,6 +188,7 @@ public class DisPlay extends PanelStyle {
             currentlyPlaying = queue.getSongs().get(0);
             songState();
         }
+        MainWindow.infoPanel.currentQueue();
     }
 
     // MODIFIES: this

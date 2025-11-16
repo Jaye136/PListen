@@ -1,10 +1,8 @@
 package ui.gui;
 
 import java.awt.Color;
-import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
@@ -88,31 +86,3 @@ public class MainWindow extends JFrame {
     }
 
 }
-
-// Routing buttons refactoring proposal (instead of true/false setting)
-// DO NOT USE!!!!!!!!!!!
-
-// BackButtonPressed, ExistButtonPressed, implements RouteButtonPressed
-
-// methodCallingMethodInUI() throws RouteButtonPressed {
-// doingThings();
-// doingThings();
-// doingThings();
-// if (enterMethodInUI.isPressed()) {
-// try {
-// methodInUI()
-// } catch (BackButtonPressed e) {
-// methodCallingMethodInUI();
-// }
-// } else if (backButton.isPressed()) {
-// throw new BackButtonPressed e; // caught, handled in caller method (this)
-// } else if (exitButton.isPressed()) {
-// throw new ExitButtonPressed e; // not caught, propogates up until main
-// }
-// }
-
-// methodInUI() throws BackButtonPressed {
-// if (backIsPressed()) {
-// throw new BackButtonPressed e;
-// }
-// }

@@ -11,12 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.plain.Song;
 
-public class songEditCreateWindow extends JFrame {
-    private final String unLiked = "☆";
-    private final String liked = "★";
-
+@ExcludeFromJacocoGeneratedReport
+public class SongEditCreateWindow extends JFrame {
     private int frameSizeX;
     private int frameSizeY;
     private JFrame editCreateWindow;
@@ -25,7 +24,7 @@ public class songEditCreateWindow extends JFrame {
     private JLabel linkpath;
     private JLabel artistName;
     private JLabel albumTitle;
-    private JLabel Genre;
+    private JLabel genre;
     private JLabel duration;
     private JLabel colour;
 
@@ -33,7 +32,7 @@ public class songEditCreateWindow extends JFrame {
     private JTextField linkField;
     private JTextField artistField;
     private JTextField albumField;
-    private JComboBox GenreField;
+    private JComboBox genreField;
     private JFormattedTextField durationField;
     private JButton likeButton;
     private JButton unLikeButton;
@@ -41,16 +40,17 @@ public class songEditCreateWindow extends JFrame {
     private Song addingThisSong;
 
     // EFFECTS: construct a sub-window to add song information
-    public songEditCreateWindow() {
+    public SongEditCreateWindow() {
         frameSizeX = 450;
         frameSizeY = 550;
         initialise();
     }
 
+    // MODIFIES: this
     // EFFECTS: edit window behaviour
     private void initialise() {
         editCreateWindow = new JFrame();
-        editCreateWindow.setTitle("PListen");
+        editCreateWindow.setTitle("New song+");
         editCreateWindow.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         editCreateWindow.setLayout(null);
         editCreateWindow.setSize(frameSizeX, frameSizeY);
@@ -71,7 +71,7 @@ public class songEditCreateWindow extends JFrame {
         linkpath = null;
         artistName = null;
         albumTitle = null;
-        Genre = null;
+        genre = null;
         duration = null;
         colour = null;
     }
@@ -86,6 +86,7 @@ public class songEditCreateWindow extends JFrame {
     // !!! Disabled until name and link are added !!!
     private void setUpLikeUnlike() {
         likeButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 addingThisSong.switchLikedStatus(false);
@@ -93,6 +94,7 @@ public class songEditCreateWindow extends JFrame {
             }
         });
         unLikeButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 addingThisSong.switchLikedStatus(true);

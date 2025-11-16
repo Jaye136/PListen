@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.handlers.Library;
 
+@ExcludeFromJacocoGeneratedReport
 public class LibraryWriterTest { // referenced from JsonSerialisationDemo from CPSC210
 
     @Test
@@ -42,12 +44,13 @@ public class LibraryWriterTest { // referenced from JsonSerialisationDemo from C
         try {
             Library saveThis = new Library();
             saveThis.loadDefault();
+            saveThis.addSongToLibrary("bland performance", "https://awardWinnerOfMostDefault.boo");
             LibraryWriter write = new LibraryWriter("./data/noneExceptDefaultWrite.json");
             write.writeJson(saveThis);
 
             LibraryLoader load = new LibraryLoader("./data/noneExceptDefaultWrite.json");
             saveThis = load.readJson();
-            assertEquals(saveThis.getSongLibrary().size(), 5);
+            assertEquals(saveThis.getSongLibrary().size(), 6);
         } catch (IOException e) {
             fail();
         }

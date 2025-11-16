@@ -196,7 +196,7 @@ public class Library {
         return jsonArray;
     }
 
-    // EFFECTS: getter (only for testing)
+    // EFFECTS: getter (for GUI and testing)
     public List<Song> getSongLibrary() {
         return songLibrary;
     }

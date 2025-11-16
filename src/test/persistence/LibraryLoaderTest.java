@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.handlers.Library;
 
+@ExcludeFromJacocoGeneratedReport
 public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from CPSC210
 
     @Test
@@ -39,7 +41,7 @@ public class LibraryLoaderTest { // referenced from JsonSerialisationDemo from C
         LibraryLoader load = new LibraryLoader("./data/noneExceptDefaultLoad.json");
         try {
             Library loadLib = load.readJson();
-            assertEquals(loadLib.getSongLibrary().size(), 5);
+            assertEquals(loadLib.getSongLibrary().size(), 6);
             assertEquals(loadLib.getAlbumLibrary().size(), 2);
             assertEquals(loadLib.getArtistLibrary().size(), 2);
         } catch (IOException e) {

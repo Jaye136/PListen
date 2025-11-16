@@ -24,6 +24,7 @@ public class MenuPanel extends PanelStyle {
     private JLabel sepLineOne;
     private JButton viewPlaylists;
     private JButton viewQueue;
+    private JButton queueBackButton;
     private JLabel sepLineTwo;
     private JButton saveLoadButton;
     private JLabel saveLoadSuccess;
@@ -73,6 +74,7 @@ public class MenuPanel extends PanelStyle {
         searchLibrary = new ButtonStyle("Search library...", 25, 65, 13, 175, 30);
         viewPlaylists = new ButtonStyle("View playlists...", 15, 134, 13, 205, 30);
         viewQueue = new ButtonStyle("View the queue...", 15, 168, 13, 205, 30);
+        queueBackButton = new ButtonStyle("< Back", 25, 32, 13, 175, 30);
         saveLoadButton = new ButtonStyle("Save/load data", 15, 238, 13, 205, 30);
         saveButton = new ButtonStyle("Save data", 25, 32, 13, 175, 30);
         loadButton = new ButtonStyle("Load data", 25, 65, 13, 175, 30);
@@ -88,9 +90,10 @@ public class MenuPanel extends PanelStyle {
     // EFFECTS: create a new song, and add it to the library
     private void enterNewSong() {
         newSong.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
-                new songEditCreateWindow();
+                new SongEditCreateWindow();
             }
         });
         add(newSong);
@@ -113,8 +116,44 @@ public class MenuPanel extends PanelStyle {
     // MODIFIES: this
     // EFFECTS: view the current queue in the infopanel
     private void queueDisplay() {
-        // TODO
+        viewQueue.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainWindow.infoPanel.inQueue(true);
+                viewLibrary.setText("View queue...");
+                viewLine.setText("_____________");
+                hideAllMain(true);
+                queueBackButton.setVisible(true);
+                queueBackButton.setEnabled(true);
+                sepLineOne.setVisible(false);
+                MainWindow.infoPanel.currentQueue();
+            }
+        });
+        queueBack();
         add(viewQueue);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: exit out of the sidebar menu and stop showing queue
+    private void queueBack() {
+        queueBackButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainWindow.infoPanel.inQueue(false);
+                viewLibrary.setText("View library...");
+                viewLine.setText("_____________");
+                MainWindow.infoPanel.updateShown();
+                queueBackButton.setVisible(false);
+                queueBackButton.setEnabled(false);
+                sepLineOne.setVisible(true);
+                hideAllMain(false);
+            }
+        });
+        queueBackButton.setEnabled(false);
+        queueBackButton.setVisible(false);
+        add(queueBackButton);
     }
 
     // MODIFIES: this
@@ -124,9 +163,9 @@ public class MenuPanel extends PanelStyle {
         sepLineTwo.setVisible(!hide);
         newSong.setEnabled(!hide);
         newSong.setVisible(!hide);
-        //searchLibrary.setEnabled(!hide);
+        // searchLibrary.setEnabled(!hide);
         searchLibrary.setVisible(!hide);
-        //viewPlaylists.setEnabled(!hide);
+        // viewPlaylists.setEnabled(!hide);
         viewPlaylists.setVisible(!hide);
         viewQueue.setEnabled(!hide);
         viewQueue.setVisible(!hide);
@@ -138,6 +177,7 @@ public class MenuPanel extends PanelStyle {
     // EFFECTS: change the sidebar menu to show loading and saving options
     private void saveAndLoadOptions() {
         saveLoadButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewLibrary.setText("Save/load data...");
@@ -162,6 +202,7 @@ public class MenuPanel extends PanelStyle {
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void saveFunctionality() {
         saveButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 LibraryWriter writer = new LibraryWriter("./data/librarySave.json");
@@ -183,6 +224,7 @@ public class MenuPanel extends PanelStyle {
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void loadFunctionality() {
         loadButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 LibraryLoader loader = new LibraryLoader("./data/librarySave.json");
@@ -207,6 +249,8 @@ public class MenuPanel extends PanelStyle {
         saveLoadSuccess.setVisible(true);
         int delay = 800;
         ActionListener taskPerformer = new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
+            @Override
             public void actionPerformed(ActionEvent e) {
                 saveLoadSuccess.setVisible(false);
             }
@@ -220,6 +264,8 @@ public class MenuPanel extends PanelStyle {
         saveLoadError.setVisible(true);
         int delay = 800;
         ActionListener taskPerformer = new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
+            @Override
             public void actionPerformed(ActionEvent e) {
                 saveLoadError.setVisible(false);
             }
@@ -231,6 +277,7 @@ public class MenuPanel extends PanelStyle {
     // EFFECTS: exit out of the sidebar menu and stop showing saving/loading options
     private void saveLoadBack() {
         saveLoadBackButton.addActionListener(new ActionListener() {
+            @ExcludeFromJacocoGeneratedReport
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewLibrary.setText("View library...");

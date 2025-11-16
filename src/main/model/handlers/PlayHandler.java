@@ -66,7 +66,8 @@ public class PlayHandler extends Playlist {
     }
 
     // MODIFIES: this
-    // EFFECTS: add song to back of queue
+    // EFFECTS: add song to back of queue (using the more recognisable name based on
+    // the unique behaviours/functionalities of song list)
     public void queueAddSong(Song song) {
         queue.add(song);
     }
@@ -91,7 +92,8 @@ public class PlayHandler extends Playlist {
         }
     }
 
-    // EFFECTS: getter
+    // EFFECTS: getter (using the more recognisable name based on the unique
+    // behaviours/functionalities of song list)
     public List<Song> getQueue() {
         return queue;
     }

@@ -1,11 +1,9 @@
 package ui;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import model.data.plain.Song;
 import model.handlers.Library;
 import model.handlers.PlayHandler;
 import ui.gui.MainWindow;
-import ui.gui.QueueOptionWindow;
 import ui.gui.SongEditCreateWindow;
 
 @ExcludeFromJacocoGeneratedReport

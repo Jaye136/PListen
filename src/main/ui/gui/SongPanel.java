@@ -3,7 +3,6 @@ package ui.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +18,7 @@ import ui.Main;
 import ui.gui.components.ButtonStyle;
 import ui.gui.components.LabelStyle;
 
+@ExcludeFromJacocoGeneratedReport
 public class SongPanel extends JPanel {
     private Song song;
     private JButton playButton;

@@ -1,17 +1,12 @@
 package ui.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +19,6 @@ import model.data.plain.Song;
 import ui.Main;
 import ui.gui.components.ButtonStyle;
 import ui.gui.components.LabelStyle;
-import ui.gui.components.PanelStyle;
 
 @ExcludeFromJacocoGeneratedReport
 public class QueueOptionWindow extends JFrame {

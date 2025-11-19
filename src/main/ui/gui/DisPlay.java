@@ -94,7 +94,7 @@ public class DisPlay extends PanelStyle {
 
     // MODIFIES: this
     // EFFECTS: adds functionality to play button
-    // NOTE: time delay code taken from stackexchange forum
+    // NOTE: time delay code taken from stackoverflow forum
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void setUpPlay() {
         playButton.addActionListener(new ActionListener() {
@@ -119,7 +119,7 @@ public class DisPlay extends PanelStyle {
 
     // MODIFIES: this
     // EFFECTS: adds functionality to next button
-    // NOTE: time delay code taken from stackexchange forum
+    // NOTE: time delay code taken from stackoverflow forum
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void setUpNext() {
         nextButton.addActionListener(new ActionListener() {

@@ -4,7 +4,6 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.handlers.Library;
 import model.handlers.PlayHandler;
 import ui.gui.MainWindow;
-import ui.gui.SongEditCreateWindow;
 
 @ExcludeFromJacocoGeneratedReport
 public class Main {
@@ -19,7 +18,6 @@ public class Main {
         playHandler = new PlayHandler();
         playHandler.start();
         new MainWindow();
-        //new songEditCreateWindow();
 
         Options optionsMenuLoad = new Options();
         undecided = true;

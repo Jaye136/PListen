@@ -26,6 +26,7 @@ public class SongPanel extends JPanel {
     private JButton likeButton;
     private JButton unLikeButton;
 
+    // EFFECTS: construct a song information display panel
     public SongPanel(Song song) {
         this.song = song;
         setMaximumSize(new Dimension(690, 50));

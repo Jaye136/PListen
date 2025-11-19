@@ -105,6 +105,8 @@ public class InfoPanel extends PanelStyle {
     public void updateShown() {
         resetOrUpdateSize(true, 0);
         infoPart.removeAll();
+        infoPart.repaint();
+        infoPart.revalidate();
         thisMenu.setText("Viewing library...");
         menuLine.setText("________________________________________");
         infoPart.add(whatMenu);

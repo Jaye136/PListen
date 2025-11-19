@@ -14,6 +14,7 @@ import ui.gui.MainWindow;
 @ExcludeFromJacocoGeneratedReport
 public class ButtonStyle extends JButton {
 
+    // EFFECTS: constructor for specific style of JButton (for consistency)
     public ButtonStyle(String msg, int coordX, int coordY, int fontSize, int width, int height) {
         setText(msg);
         setFont(new Font("SansSerif", Font.BOLD, fontSize));

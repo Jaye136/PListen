@@ -14,7 +14,7 @@ import ui.gui.MainWindow;
 @ExcludeFromJacocoGeneratedReport
 public class LabelStyle extends JLabel {
 
-    // constructor for set position label
+    // EFFECTS: constructor for set position label
     public LabelStyle(String msg, int size, int coordX, int coordY, int width, int height) {
         setText(msg);
         setFont(new Font("SansSerif", Font.BOLD, size));
@@ -22,7 +22,7 @@ public class LabelStyle extends JLabel {
         setBounds(coordX, coordY, width, height);
     }
 
-    // constructor for dynamic alignment label
+    // EFFECTS: constructor for dynamic alignment label
     public LabelStyle(String msg, int size, int coordX, int coordY) {
         setText(msg);
         setFont(new Font("SansSerif", Font.BOLD, size));

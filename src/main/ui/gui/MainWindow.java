@@ -11,6 +11,7 @@ public class MainWindow extends JFrame {
     static final String DARKEST = "#1B1B1C";
     static final String DARKER = "#232325";
     static final String DARK = "#2a2b2d";
+    static final String STEEL = "#bdbdbd";
     static final String DAIKON = "#F2F2F3";
 
     private int frameSizeX;
@@ -79,6 +80,10 @@ public class MainWindow extends JFrame {
 
     public static String getDark() {
         return DARK;
+    }
+
+    public static String getSteel() {
+        return STEEL;
     }
 
     public static String getDaikon() {

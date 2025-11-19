@@ -198,7 +198,7 @@ public class MenuPanel extends PanelStyle {
     }
 
     // EFFECTS: adds support for library saving
-    // NOTE: time delay code taken from stackexchange forum
+    // NOTE: time delay code taken from stackoverflow forum
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void saveFunctionality() {
         saveButton.addActionListener(new ActionListener() {
@@ -220,7 +220,7 @@ public class MenuPanel extends PanelStyle {
     }
 
     // EFFECTS: adds support for library loading
-    // NOTE: time delay code taken from stackexchange forum
+    // NOTE: time delay code taken from stackoverflow forum
     // https://stackoverflow.com/questions/16596428/removing-a-jlabel-after-10-seconds?rq=3
     private void loadFunctionality() {
         loadButton.addActionListener(new ActionListener() {

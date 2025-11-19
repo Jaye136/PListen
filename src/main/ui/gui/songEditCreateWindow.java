@@ -322,8 +322,8 @@ public class SongEditCreateWindow extends JFrame {
     // EFFECTS: attempts to add given information to song. If entered value is the
     // default prompt value, or "" (no value entered), does not set to any value
     private void trySetTheSequel() {
-        String proposedArtist = titleField.getText();
-        String proposedAlbum = linkField.getText();
+        String proposedArtist = artistField.getText();
+        String proposedAlbum = albumField.getText();
         if (!proposedArtist.equals("") && !proposedArtist.equals("Enter artist name...")) {
             Main.getLibrary().songArtist(proposedArtist, addingThisSong);
         }
@@ -353,7 +353,7 @@ public class SongEditCreateWindow extends JFrame {
             }
         }
         if (!proposedColour.equals("") && !proposedColour.equals("c3cdde")) {
-            addingThisSong.setColour(proposedColour);
+            addingThisSong.setColour("#" + proposedColour);
         }
         return true;
     }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.data.collections.Playlist;
 import model.data.plain.Song;
+import model.logging.*;
 
 // CLASS DOCUMENTATION: a queue (temporary Playlist) that is not
 // saved with user data, and is cleared when the program ends. It
@@ -37,7 +38,7 @@ public class PlayHandler extends Playlist {
     // do with the given values
     public String playSongQueue() {
         String playThis = queue.get(0).getLink();
-        queue.remove(0);
+        EventLog.getInstance().logEvent(new Event("Played song from queue: " + queue.remove(0)));
         if (playThis.startsWith("https://")) {
             return "BingBing!!";
         } else {
@@ -49,19 +50,24 @@ public class PlayHandler extends Playlist {
     // EFFECTS: (setter) replace current queue with given song
     public void playSongNow(Song song) {
         queue.clear();
+        EventLog.getInstance().logEvent(new Event("Queue cleared"));
         queue.add(song);
+        EventLog.getInstance().logEvent(new Event("Now playing: " + song.getTitle()));
     }
 
     // MODIFIES: this
     // EFFECTS: (setter) replace current queue with playlist
     public void playPlaylistNow(Playlist songs) {
         queue = songs.getSongs();
+        EventLog.getInstance().logEvent(new Event("Queue cleared"));
+        EventLog.getInstance().logEvent(new Event("Added " + songs.getSongs().size() + " songs to the queue"));
     }
 
     // MODIFIES: this
     // EFFECTS: add song to front of queue
     public void nextAddSong(Song song) {
         queue.add(0, song);
+        EventLog.getInstance().logEvent(new Event("Added " + song.getTitle() + " to the front of the queue"));
     }
 
     // MODIFIES: this
@@ -69,18 +75,23 @@ public class PlayHandler extends Playlist {
     // the unique behaviours/functionalities of song list)
     public void queueAddSong(Song song) {
         queue.add(song);
+        EventLog.getInstance().logEvent(new Event("Added " + song.getTitle() + " to the back of the queue"));
     }
 
     // MODIFIES: this
     // EFFECTS: add all songs of given playlist to front of queue
     public void nextAddSongs(Playlist songs) {
         queue.addAll(0, songs.getSongs());
+        EventLog.getInstance()
+                .logEvent(new Event("Added " + songs.getSongs().size() + " songs to the front of the queue"));
     }
 
     // MODIFIES: this
     // EFFECTS: add all songs of given playlist to back of queue
     public void queueAddSongs(Playlist songs) {
         queue.addAll(songs.getSongs());
+        EventLog.getInstance()
+                .logEvent(new Event("Added " + songs.getSongs().size() + " songs to the back of the queue"));
     }
 
     // EFFECTS: getter (using the more recognisable name based on the unique

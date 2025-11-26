@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.data.plain.Song;
+import model.logging.*;
 
 // CLASS DOCUMENT: a type of auto-managed Collection that additionally has
 // a list of Albums where this object is the creator.
@@ -26,12 +27,16 @@ public class Artist extends Collection {
         if (!albums.contains(album)) {
             albums.add(album);
         }
+        EventLog.getInstance()
+                .logEvent(new Event("Successfully credited " + name + " as the contributor for " + album.getName()));
     }
 
     // MODIFIES: this
     // EFFECTS: remove the given album from album list
     public void removeAlbum(Album album) {
         albums.remove(album);
+        EventLog.getInstance()
+                .logEvent(new Event(name + "is no longer credited as the contributor of " + album.getName()));
     }
 
     // EFFECTS: getter

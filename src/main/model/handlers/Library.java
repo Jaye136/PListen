@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import model.data.collections.*;
 import model.data.exceptions.*;
 import model.data.plain.*;
+import model.logging.*;
 
 // CLASS DOCUMENTATION: a handler to read and initialise user data.
 
@@ -58,6 +59,7 @@ public class Library {
         addSongToLibrary("jazzy jams", "https://tubeyou.moc");
 
         defaultSongDetails();
+        EventLog.getInstance().logEvent(new Event(songLibrary.size() + " songs successfully initialised in library"));
     }
 
     // EFFECTS: add details for default value songs
@@ -97,6 +99,7 @@ public class Library {
     public void addSongToLibrary(String title, String link) {
         Song song = new Song(title, link);
         songLibrary.add(song);
+        EventLog.getInstance().logEvent(new Event("New song added to the library:" + title));
     }
 
     // MODIFIES: this
@@ -178,6 +181,7 @@ public class Library {
         } catch (SongNotFoundException e) {
             // will never happen
         }
+        EventLog.getInstance().logEvent(new Event("Successfully loaded 1 new song to the library: " + title));
     }
 
     // EFFECTS: write save data to JSON
@@ -192,6 +196,7 @@ public class Library {
         JSONArray jsonArray = new JSONArray();
         for (Song song : songLibrary) {
             jsonArray.put(song.toJson());
+            EventLog.getInstance().logEvent(new Event("Successfully saved 1 song to file: " + song.getTitle()));
         }
         return jsonArray;
     }

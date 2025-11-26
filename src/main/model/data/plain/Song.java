@@ -6,6 +6,7 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.data.collections.Album;
 import model.data.collections.Artist;
 import model.handlers.Library;
+import model.logging.*;
 
 // CLASS DOCUMENTATION: a data type detailing information about a Song.
 // The song has a variety of information, but only the title and link
@@ -148,6 +149,7 @@ public class Song { // could also make podcast subclass
         }
         this.creator = creator;
         this.creator.addSong(this);
+        EventLog.getInstance().logEvent(new Event("Creator of " + title + " changed to: " + creator.getName()));
     }
 
     // MODIFIES: this, album
@@ -159,30 +161,36 @@ public class Song { // could also make podcast subclass
         }
         this.album = album;
         this.album.addSong(this);
+        EventLog.getInstance().logEvent(new Event("Album of " + title + " changed to: " + album.getName()));
     }
 
     // MODIFIES: this
     // EFFECTS: set the genre for this song
     public void setGenre(Genre genre) {
         this.songGenre = genre;
+        EventLog.getInstance().logEvent(new Event("Genre of " + title + " changed to: " + String.valueOf(genre)));
     }
 
     // MODIFIES: this
     // EFFECTS: set the duration for this song
     public void setDuration(int durationInSeconds) {
         this.durationInSeconds = durationInSeconds;
+        EventLog.getInstance().logEvent(new Event("Duration of " + title + " changed to: " + durationInSeconds));
     }
 
     // MODIFIES: this
     // EFFECTS: set the display colour for this song in HEX
     public void setColour(String colour) {
         this.colour = colour;
+        EventLog.getInstance().logEvent(new Event("Cover colour of " + title + " changed to: " + colour));
     }
 
     // MODIFIES: this
     // EFFECTS: switch the liked status of the song to given boolean
     public void switchLikedStatus(Boolean likedStatus) {
         this.likedStatus = likedStatus;
+        EventLog.getInstance()
+                .logEvent(new Event("Like status of " + title + " switched to: " + Boolean.toString(likedStatus)));
     }
 
     // EFFECTS: getter

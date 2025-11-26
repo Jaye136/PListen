@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.data.exceptions.SongNotFoundException;
 import model.data.plain.Song;
+import model.logging.*;
 
 // CLASS DOCUMENT: a data type specifying a general collection of Songs.
 // The Songs this object has is arbitrarily sized, and can be searched
@@ -82,18 +83,22 @@ public abstract class Collection {
         if (!songs.contains(song)) {
             songs.add(song);
         }
+        EventLog.getInstance().logEvent(new Event(song.getTitle() + " is now part of the collection: " + name));
     }
 
     // MODIFIES: this
     // EFFECTS: remove the given song from song list
     public void removeSong(Song song) {
         songs.remove(song);
+        EventLog.getInstance().logEvent(new Event(song.getTitle() + " is no longer part of the collection: " + name));
     }
 
     // MODIFIES: this
     // EFFECTS: setter
     public void setName(String name) {
+        String oldName = this.name;
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("The collection " + oldName + " has been renamed to: " + name));
     }
 
     // EFFECTS: getter

@@ -3,6 +3,7 @@ package model.data.collections;
 import java.util.ArrayList;
 
 import model.data.plain.Song;
+import model.logging.*;
 
 // CLASS DOCUMENT: A special type of Collection that is intended
 // to be user-managed. It can do mass-actions such as liking/unliking
@@ -29,6 +30,7 @@ public class Playlist extends Collection {
     @Override
     public void addSong(Song song) {
         songs.add(song);
+        EventLog.getInstance().logEvent(new Event(song.getTitle() + " is now part of the collection: " + name));
     }
 
     // MODIFIES: song in this.songs
@@ -37,6 +39,8 @@ public class Playlist extends Collection {
     public void massOpinion(Boolean liked) {
         for (Song songOpinion : songs) {
             songOpinion.switchLikedStatus(liked);
+            EventLog.getInstance().logEvent(new Event(songs.size() + " / " + songs.size() + " songs in " + name
+                    + " have had their like status changed to: " + Boolean.toString(liked)));
         }
     }
 

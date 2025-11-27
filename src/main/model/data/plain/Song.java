@@ -149,7 +149,6 @@ public class Song { // could also make podcast subclass
         }
         this.creator = creator;
         this.creator.addSong(this);
-        EventLog.getInstance().logEvent(new Event("Creator of " + title + " changed to: " + creator.getName()));
     }
 
     // MODIFIES: this, album
@@ -161,7 +160,6 @@ public class Song { // could also make podcast subclass
         }
         this.album = album;
         this.album.addSong(this);
-        EventLog.getInstance().logEvent(new Event("Album of " + title + " changed to: " + album.getName()));
     }
 
     // MODIFIES: this
@@ -175,7 +173,8 @@ public class Song { // could also make podcast subclass
     // EFFECTS: set the duration for this song
     public void setDuration(int durationInSeconds) {
         this.durationInSeconds = durationInSeconds;
-        EventLog.getInstance().logEvent(new Event("Duration of " + title + " changed to: " + durationInSeconds));
+        EventLog.getInstance()
+                .logEvent(new Event("Duration of " + title + " changed to: " + durationInSeconds + " seconds"));
     }
 
     // MODIFIES: this

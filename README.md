@@ -64,37 +64,38 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
  to consider how it relates to the rest of the program, as well as what aspect *(such as songs, or playlists)* it would
  concern.
 
-[Program entered]<br>
-➥ [View library]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [New song+]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [Search library]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Search by...]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Song title]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Artists]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Name]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Albums]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Albums]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Genres]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Liked songs]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of songs]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Display of songs]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [⋮]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Like/unlike song]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to next]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to queue]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [Add to playlist]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;➥ [List of playlists]<br>
-➥ [View playlists]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [New playlist+]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [My playlists]<br>
-➥ [Queue options]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [Play queue]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [View queue]<br>
-➥ [Save/load data]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [Save library]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;➥ [Load library]<br>
-➥ [Quit program]<br>
-  
+<pre>
+[Program entered]
+    ➥ [View library]
+        ➥ [New song+]
+        ➥ [Search library]
+            ➥ [Search by...]
+                ➥ [Song title]
+                ➥ [Artists]
+                    ➥ [Name]
+                    ➥ [Albums]
+                ➥ [Albums]
+                ➥ [Genres]
+                ➥ [Liked songs]
+    ➥ [List of songs]
+        ➥ [Display of songs]
+        ➥ [⋮]
+            ➥ [Like/unlike song]
+            ➥ [Add to next]
+            ➥ [Add to queue]
+            ➥ [Add to playlist]
+                ➥ [List of playlists]
+    ➥ [View playlists]
+        ➥ [New playlist+]
+        ➥ [My playlists]
+    ➥ [Queue options]
+        ➥ [Play queue]
+        ➥ [View queue]
+    ➥ [Save/load data]
+        ➥ [Save library]
+        ➥ [Load library]
+    ➥ [Quit program]
+</pre>
   
 ### About the Program
 <ins>What does this program do?</ins>
@@ -158,3 +159,62 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
 <ins>How do I load?</ins>
 - Loading can be done by clicking on the <ins>*Save/load data*</ins> button in the side menu panel, and then clicking
  <ins>*Load data*</ins>.
+
+
+### **Phase 4: Task 2**
+Example console event log of the events that occur when program is run, and the default library is initialised.<br>
+Printed to the console after closing the application.<br>
+<pre>
+Wed Nov 26 14:38:09 PST 2025
+New song added to the library:boomChaCha
+Wed Nov 26 14:38:09 PST 2025
+New song added to the library:fresh beats
+Wed Nov 26 14:38:09 PST 2025
+New song added to the library:mysterious tunes
+Wed Nov 26 14:38:09 PST 2025
+New song added to the library:nice bars
+Wed Nov 26 14:38:09 PST 2025
+New song added to the library:jazzy jams
+Wed Nov 26 14:38:09 PST 2025
+   (1) New artist added to library: chachaBoomer
+Wed Nov 26 14:38:09 PST 2025
+   (2) Creator of boomChaCha changed to new artist: chachaBoomer
+Wed Nov 26 14:38:09 PST 2025
+   (1) New album added to library: wanting to MOVE!
+Wed Nov 26 14:38:09 PST 2025
+   (2) Successfully credited existing artist chachaBoomer as the contributor for wanting to MOVE!
+Wed Nov 26 14:38:09 PST 2025
+   (3) Album of boomChaCha changed to new album: wanting to MOVE!
+Wed Nov 26 14:38:09 PST 2025
+   (1) Creator of fresh beats changed to existing artist: chachaBoomer
+Wed Nov 26 14:38:09 PST 2025
+Genre of fresh beats changed to: HIPRAP
+Wed Nov 26 14:38:09 PST 2025
+Cover colour of fresh beats changed to: #000000
+Wed Nov 26 14:38:09 PST 2025
+   (1) New artist added to library: istArtist the trAtsi
+Wed Nov 26 14:38:09 PST 2025
+   (2) Creator of mysterious tunes changed to new artist: istArtist the trAtsi
+Wed Nov 26 14:38:09 PST 2025
+Duration of mysterious tunes changed to: 75 seconds
+Wed Nov 26 14:38:09 PST 2025
+Like status of mysterious tunes switched to: true
+Wed Nov 26 14:38:09 PST 2025
+   (1) Album of nice bars changed to existing album: wanting to MOVE!
+Wed Nov 26 14:38:09 PST 2025
+Genre of nice bars changed to: HIPRAP
+Wed Nov 26 14:38:09 PST 2025
+Cover colour of nice bars changed to: #FFFFFF
+Wed Nov 26 14:38:09 PST 2025
+   (1) New album added to library: feeling sleepy...
+Wed Nov 26 14:38:09 PST 2025
+   (2) Successfully credited existing artist istArtist the trAtsi as the contributor for feeling sleepy...
+Wed Nov 26 14:38:09 PST 2025
+   (3) Album of jazzy jams changed to new album: feeling sleepy...
+Wed Nov 26 14:38:09 PST 2025
+Genre of jazzy jams changed to: JAZZ
+Wed Nov 26 14:38:09 PST 2025
+Duration of jazzy jams changed to: 80 seconds
+Wed Nov 26 14:38:09 PST 2025
+5 songs successfully initialised in library
+</pre>

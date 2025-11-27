@@ -38,7 +38,8 @@ public class PlayHandler extends Playlist {
     // do with the given values
     public String playSongQueue() {
         String playThis = queue.get(0).getLink();
-        EventLog.getInstance().logEvent(new Event("Played song from queue: " + queue.remove(0)));
+        Song played = queue.remove(0);
+        EventLog.getInstance().logEvent(new Event("Played song from queue: " + played.getTitle()));
         if (playThis.startsWith("https://")) {
             return "BingBing!!";
         } else {

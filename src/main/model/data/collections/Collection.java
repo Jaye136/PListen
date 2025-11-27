@@ -83,7 +83,6 @@ public abstract class Collection {
         if (!songs.contains(song)) {
             songs.add(song);
         }
-        EventLog.getInstance().logEvent(new Event(song.getTitle() + " is now part of the collection: " + name));
     }
 
     // MODIFIES: this

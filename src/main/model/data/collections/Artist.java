@@ -27,8 +27,6 @@ public class Artist extends Collection {
         if (!albums.contains(album)) {
             albums.add(album);
         }
-        EventLog.getInstance()
-                .logEvent(new Event("Successfully credited " + name + " as the contributor for " + album.getName()));
     }
 
     // MODIFIES: this

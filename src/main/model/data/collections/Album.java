@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.data.plain.Song;
 import model.handlers.Library;
-import model.logging.*;
 
 // CLASS DOCUMENT: a subtype of Playlist, which is a subtype of Collection.
 // This object can do Playlist mass-actions such as liking/unliking all songs
@@ -31,7 +30,6 @@ public class Album extends Playlist {
         }
         this.contributor = contributor;
         this.contributor.addAlbum(this);
-        EventLog.getInstance().logEvent(new Event("Set contributor of " + name + " to " + contributor.getName()));
     }
 
     // EFFECTS: getter

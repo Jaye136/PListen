@@ -109,11 +109,17 @@ public class Library {
         try {
             Artist artistFind = searchArtist(name);
             song.setCreator(artistFind);
+            EventLog.getInstance().logEvent(new Event(
+                    "   (1) Creator of " + song.getTitle() + " changed to existing artist: " + artistFind.getName()));
         } catch (ArtistNotFoundException e) {
             Artist artistExist = new Artist(name);
             if (!artistExist.equals(unknownArtist)) {
                 artistLibrary.add(artistExist);
+                EventLog.getInstance()
+                        .logEvent(new Event("   (1) New artist added to library: " + artistExist.getName()));
                 song.setCreator(artistExist);
+                EventLog.getInstance().logEvent(new Event(
+                        "   (2) Creator of " + song.getTitle() + " changed to new artist: " + artistExist.getName()));
             }
         }
     }
@@ -126,6 +132,8 @@ public class Library {
             Album albumFind = searchAlbum(albumTitle);
             song.setAlbum(albumFind);
             song.setCreator(albumFind.getContributor());
+            EventLog.getInstance().logEvent(new Event(
+                    "   (1) Album of " + song.getTitle() + " changed to existing album: " + albumFind.getName()));
         } catch (AlbumNotFoundException e) {
             songAlbumAdd(albumTitle, albumArtist, song);
         }
@@ -140,20 +148,42 @@ public class Library {
             if (!albumArtistExist.equals(unknownAlbum)) {
                 albumArtistExist.setContributor(artistFind);
                 albumLibrary.add(albumArtistExist);
+                EventLog.getInstance()
+                        .logEvent(new Event("   (1) New album added to library: " + albumArtistExist.getName()));
+                EventLog.getInstance().logEvent(new Event("   (2) Successfully credited existing artist "
+                        + artistFind.getName() + " as the contributor for " + albumArtistExist.getName()));
                 song.setAlbum(albumArtistExist);
+                EventLog.getInstance().logEvent(new Event(
+                        "   (3) Album of " + song.getTitle() + " changed to new album: " + albumArtistExist.getName()));
             }
         } catch (ArtistNotFoundException ex) {
-            Artist artistExist = new Artist(albumArtist);
-            Album albumArtistExist = new Album(albumTitle);
-            if (!albumArtistExist.equals(unknownAlbum)) {
-                albumLibrary.add(albumArtistExist);
-                song.setAlbum(albumArtistExist);
-                if (!artistExist.equals(unknownArtist)) {
-                    albumArtistExist.setContributor(artistExist);
-                    artistLibrary.add(artistExist);
-                    song.setCreator(artistExist);
-                }
+            songArtistAlbumAdd(albumTitle, albumArtist, song);
+        }
+    }
+
+    // EFFECTS: helper for songAlbum(), in the case that the given album is not
+    // found, or is unknown
+    private void songArtistAlbumAdd(String albumTitle, String albumArtist, Song song) {
+        Artist artistExist = new Artist(albumArtist);
+        Album albumArtistExist = new Album(albumTitle);
+        if (!albumArtistExist.equals(unknownAlbum)) {
+            albumLibrary.add(albumArtistExist);
+            EventLog.getInstance()
+                    .logEvent(new Event("   (1) New album added to library: " + albumArtistExist.getName()));
+            song.setAlbum(albumArtistExist);
+            if (!artistExist.equals(unknownArtist)) {
+                albumArtistExist.setContributor(artistExist);
+                artistLibrary.add(artistExist);
+                EventLog.getInstance()
+                        .logEvent(new Event("     (A) New artist added to library: " + artistExist.getName()));
+                EventLog.getInstance().logEvent(new Event("     (B) Successfully credited new artist "
+                        + artistExist.getName() + " as the contributor for " + albumArtistExist.getName()));
+                song.setCreator(artistExist);
+                EventLog.getInstance().logEvent(new Event(
+                        "     (C) Creator of " + song.getTitle() + " changed to new artist: " + artistExist.getName()));
             }
+            EventLog.getInstance().logEvent(new Event(
+                    "   (2) Album of " + song.getTitle() + " changed to new album: " + albumArtistExist.getName()));
         }
     }
 
@@ -208,7 +238,7 @@ public class Library {
 
     // // EFFECTS: getter (only for testing)
     // public List<Playlist> getPlayLibrary() {
-    //     return playLibrary;
+    // return playLibrary;
     // }
 
     // EFFECTS: getter (only for testing)

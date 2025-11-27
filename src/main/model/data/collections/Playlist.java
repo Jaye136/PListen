@@ -30,7 +30,6 @@ public class Playlist extends Collection {
     @Override
     public void addSong(Song song) {
         songs.add(song);
-        EventLog.getInstance().logEvent(new Event(song.getTitle() + " is now part of the collection: " + name));
     }
 
     // MODIFIES: song in this.songs

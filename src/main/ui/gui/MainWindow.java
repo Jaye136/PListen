@@ -1,10 +1,14 @@
 package ui.gui;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import model.logging.Event;
+import model.logging.EventLog;
 
 @ExcludeFromJacocoGeneratedReport
 public class MainWindow extends JFrame {
@@ -34,7 +38,7 @@ public class MainWindow extends JFrame {
     private void initialise() {
         mainWindow = new JFrame();
         mainWindow.setTitle("PListen");
-        mainWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        mainWindow.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         mainWindow.setLayout(null);
         mainWindow.setSize(frameSizeX, frameSizeY);
         mainWindow.getContentPane().setBackground(Color.decode(DARKEST));
@@ -42,6 +46,7 @@ public class MainWindow extends JFrame {
         disPlayPanel();
         optMenuPanel();
         infoPagePanel();
+        postHumously();
 
         mainWindow.setResizable(false);
         mainWindow.setVisible(true);
@@ -68,6 +73,21 @@ public class MainWindow extends JFrame {
     private void infoPagePanel() {
         infoPanel = new InfoPanel();
         mainWindow.add(infoPanel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets up a process to log all info once the window is closed
+    private void postHumously() {
+        mainWindow.addWindowListener(new WindowAdapter() {
+            @ExcludeFromJacocoGeneratedReport
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event ea : EventLog.getInstance()) {
+                    System.out.println(ea.toString());
+                }
+                System.exit(0);
+            }
+        });
     }
 
     public static String getDarkest() {

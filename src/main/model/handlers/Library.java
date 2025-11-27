@@ -228,6 +228,7 @@ public class Library {
             jsonArray.put(song.toJson());
             EventLog.getInstance().logEvent(new Event("Successfully saved 1 song to file: " + song.getTitle()));
         }
+        EventLog.getInstance().logEvent(new Event(songLibrary.size() + " songs successfully saved to file"));
         return jsonArray;
     }
 

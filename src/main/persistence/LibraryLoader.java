@@ -14,6 +14,7 @@ import org.json.JSONObject;
 // Referenced from JsonSerialisationDemo from CPSC210.
 
 import model.handlers.Library;
+import model.logging.*;
 
 public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC210
     private String saveSource;
@@ -59,10 +60,13 @@ public class LibraryLoader { // referenced from JsonSerialisationDemo from CPSC2
     // EFFECTS: load parsed objects into the Library
     private void startLibrary(Library libraryToLoadInto, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("songLibrary");
+        int loadedSongCount = 0;
         for (Object json : jsonArray) {
             JSONObject nextSong = (JSONObject) json;
             libraryToLoadInto.loadSongToLibrary(nextSong);
+            loadedSongCount++;
         }
+        EventLog.getInstance().logEvent(new Event(loadedSongCount + " songs successfully loaded to library"));
     }
 
 }

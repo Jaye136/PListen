@@ -13,6 +13,7 @@
     - [About the Program](#about-the-program)
     - [User Stories](#user-stories)
     - [TLDR; Instructions for End User](#tldr-instructions-for-end-user)
+    - [Event Log Example](#phase-4-task-2)
   
   
 ## User (Mock)umentation

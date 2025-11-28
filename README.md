@@ -7,15 +7,19 @@
     - [Storing Songs](#storing-songs)
     - [Playlist Options](#playlist-options)
     - [Queue Options](#queue-options)
-  
-- [Summary & Goals](#summary-and-goals)<br>
+
+- [Summary & Goals](#summary-and-goals)
     - [Interface Planning](#interface-planning)
     - [About the Program](#about-the-program)
     - [User Stories](#user-stories)
     - [TLDR; Instructions for End User](#tldr-instructions-for-end-user)
-    - [Event Log Example](#phase-4-task-2)
-  
-  
+
+- [Phase 4](#phase-4)
+    - [Event Log Example (task 2)](#event-log-example-task-2)
+    - [Refactoring (task 3)](#refactoring-task-3)
+
+<br>
+
 ## User (Mock)umentation
 ### Storing Songs
 New songs can be added to the library by going to <ins>*Library > New Song+*</ins>. Users will be prompted to add the
@@ -34,16 +38,18 @@ The required information can be referenced below. Unentered non-necessary inform
 | Duration     | ✘              | 0 seconds     |
 | Cover colour | ✘              | #c3cdde     |
 | Liked song?  | ✘              | False         |
-  
-  
+
+----
+
 ### Playlist Options
 Playlists can be created by going to <ins>*My Playlists > New Playlist+*</ins>. After creating a playlist, users can
  then go to <ins>*Library > Songs*</ins> for a list of all songs in the library by the order that they were added, or
  <ins>*Library > Search Library > Search by...*</ins> to search using a specified genre, artist name, title, etc.<br>
 Once the desired song is found, it can be added to the playlist by clicking the three dots, and then selecting <ins>*Add
  to playlist > [Playlist name]*</ins>.
-  
-  
+
+----
+
 ### Queue Options
 Songs can be played by clicking on the play button while in the library, or by playing a playlist. When selecting
  songs not in a playlist, the queue will stop after playing the single selected song. Users may also click on the three
@@ -54,8 +60,9 @@ Songs can be played by clicking on the play button while in the library, or by p
 > <sup>1</sup> As this is only a concept design where network calls are not to be used, this information will
 only be linked to a *method stub* to show its purpose and theoretical implementation.<br>
 > <sup>2</sup> Queues are not saved like playlists are. They are cleared when the user closes the program.<br>
-  
-  
+
+<br>
+
 ## Summary and Goals
 ### Interface Planning
 > This section is outdated as of phase 3. It should now only be used as a feature checklist.
@@ -97,7 +104,9 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
         ➥ [Load library]
     ➥ [Quit program]
 </pre>
-  
+
+----
+
 ### About the Program
 <ins>What does this program do?</ins>
 - **PListen** is a music player program, which stores information about songs in its database. Users will be able
@@ -111,8 +120,9 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
 - As my previous coding experience was in Racket, a LISP language, I wanted to work on a project that would connect
  both my LISP knowlege with Java's OOP design. This project allows me to work with lists, as well as do object
  operations by treating each song as their own object.
-  
-  
+
+----
+
 ### User Stories
 *As a user, I would like to...*<br>
    
@@ -134,8 +144,9 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
   what songs are in the Library if any new Songs were added, etc.)<br>
 > Restore/reload the state of a Library to the same save state that was loaded in<br>
 
+<br>
 
-### **TLDR; Instructions for End User**
+## TLDR; Instructions for End User
 <ins>How do I view the X's that were added to Y?</ins>
 - This can be done immediately after opening the app and viewing the user library.<br>
 
@@ -161,8 +172,10 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
 - Loading can be done by clicking on the <ins>*Save/load data*</ins> button in the side menu panel, and then clicking
  <ins>*Load data*</ins>.
 
+<br>
 
-### **Phase 4: Task 2**
+## Phase 4
+### Event Log Example (task 2)
 Example console event log of the events that occur when program is run, and the default library is initialised.<br>
 Printed to the console after closing the application.<br>
 <pre>
@@ -219,3 +232,37 @@ Duration of jazzy jams changed to: 80 seconds
 Wed Nov 26 14:38:09 PST 2025
 5 songs successfully initialised in library
 </pre>
+
+----
+
+### Refactoring (task 3)
+<p style="text-indent:15px;">When working on my project, I already spent quite a bit of time refactoring things,
+ since abstracting data is something I enjoy doing. However, due to the limited timespan of this project, I was unable
+ to implement two types of data structures that I believe my project would have benefitted from, due to learning them
+ later in the course.</p>
+
+<p style="text-indent:15px;">One of these structures was observers. The way that I implemented updates and refreshes
+ in the GUI was by putting a call to the refresh method in every button that changed anything that could show up in
+ the user menu <i>(new song, queue options, like status switch button)</i>. This works, but when the number of JButtons
+ started stacking up, one or two forgotten calls led into quite the confusing debugging section when unexpected
+ behaviour started popping up.
+ To avoid too many cross-dependencies, what I wanted was to assign a 'manager' to watch the whole project, which would
+ solely handle the responsibility of calling updates and refreshes. Whenever a subject raised a flag, the manager would
+ be notified that the display had changed <i>(like going from the library to the queue by pressing 'view queue')</i>,
+ or that elements were added to the displayed list <i>(new song, add to queue)</i>. This would have contained the
+ update/refresh call in a single location, making bug tracking much simpler.</p?
+
+<p style="text-indent:15px;">Another thing was the singleton data structure. As my program is a song player program,
+ it needs to run an instance of Library and PlayHandler <i>(queue)</i> concurrently to main. There is only ever going
+ to be one copy of each, and any class that needs to access that single concurrent instance of the library/queue must
+ call Main.getLibrary() or Main.PlayHandler(). This imported Main everywhere, when Main had nothing to do with the
+ behaviours that Library and PlayHandler provided. I knew about the static keyword, but I just wasn't sure how I could
+ make a whole class static. Singleton designing would have been perfect for my project, and I truly wish that I had
+ known about it sooner.</p>
+
+<p style="text-indent:15px;">While working out inter-class dependencies in order to mimic the behaviours of
+ subject-observers and singleton class, I was constantly thinking of how convoluded the UML diagram must be getting.
+ I was sure there was a better way to do things—I just didn't know how to go about it. It was slightly devastating
+ to start learning the exact data structures I had been grasping for, right after the major code phase deadline.
+ Still, I'm glad that I can now at least put a name to what I had been searching for. I'm looking forward to
+ implementing these strategies in my next project.</p>

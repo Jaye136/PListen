@@ -236,12 +236,12 @@ Wed Nov 26 14:38:09 PST 2025
 ----
 
 ### Refactoring (task 3)
-<p style="text-indent:15px;">When working on my project, I already spent quite a bit of time refactoring things,
+&nbsp;&nbsp; When working on my project, I already spent quite a bit of time refactoring things,
  since abstracting data is something I enjoy doing. However, due to the limited timespan of this project, I was unable
  to implement two types of data structures that I believe my project would have benefitted from, due to learning them
- later in the course.</p>
+ later in the course.
 
-<p style="text-indent:15px;">One of these structures was observers. The way that I implemented updates and refreshes
+&nbsp;&nbsp; One of these structures was observers. The way that I implemented updates and refreshes
  in the GUI was by putting a call to the refresh method in every button that changed anything that could show up in
  the user menu <i>(new song, queue options, like status switch button)</i>. This works, but when the number of JButtons
  started stacking up, one or two forgotten calls led into quite the confusing debugging section when unexpected
@@ -250,19 +250,19 @@ Wed Nov 26 14:38:09 PST 2025
  solely handle the responsibility of calling updates and refreshes. Whenever a subject raised a flag, the manager would
  be notified that the display had changed <i>(like going from the library to the queue by pressing 'view queue')</i>,
  or that elements were added to the displayed list <i>(new song, add to queue)</i>. This would have contained the
- update/refresh call in a single location, making bug tracking much simpler.</p?
+ update/refresh call in a single location, making bug tracking much simpler.
 
-<p style="text-indent:15px;">Another thing was the singleton data structure. As my program is a song player program,
+&nbsp;&nbsp; Another thing was the singleton data structure. As my program is a song player program,
  it needs to run an instance of Library and PlayHandler <i>(queue)</i> concurrently to main. There is only ever going
  to be one copy of each, and any class that needs to access that single concurrent instance of the library/queue must
  call Main.getLibrary() or Main.PlayHandler(). This imported Main everywhere, when Main had nothing to do with the
  behaviours that Library and PlayHandler provided. I knew about the static keyword, but I just wasn't sure how I could
  make a whole class static. Singleton designing would have been perfect for my project, and I truly wish that I had
- known about it sooner.</p>
+ known about it sooner.
 
-<p style="text-indent:15px;">While working out inter-class dependencies in order to mimic the behaviours of
+&nbsp;&nbsp; While working out inter-class dependencies in order to mimic the behaviours of
  subject-observers and singleton class, I was constantly thinking of how convoluded the UML diagram must be getting.
  I was sure there was a better way to do things—I just didn't know how to go about it. It was slightly devastating
  to start learning the exact data structures I had been grasping for, right after the major code phase deadline.
  Still, I'm glad that I can now at least put a name to what I had been searching for. I'm looking forward to
- implementing these strategies in my next project.</p>
+ implementing these strategies in my next project.

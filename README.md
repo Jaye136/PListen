@@ -166,7 +166,7 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
     - I exited without saving! What do I do?:&nbsp; sorry dear user, your disappointment cannot be saved, though your
      data certainly could have been before closing. unfortunately this project is in its stone age era of only manual
      saving. I leave you this image of mr. resetti from animal crossing for future reference:<br>
-    ![mrresetti](https://github.students.cs.ubc.ca/CPSC210-2025W-T1/project-s5a4m/blob/main/data/WW_Resetti.png)
+    ![mrresetti](https://github.com/Jaye136/PListen/blob/main/data/WW_Resetti.png)
 
 <ins>How do I load?</ins>
 - Loading can be done by clicking on the <ins>*Save/load data*</ins> button in the side menu panel, and then clicking

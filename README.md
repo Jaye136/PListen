@@ -1,6 +1,8 @@
 # PListen
 **PListen** is a music player program, which stores information about songs in its database. Users will be able to
  add new songs to the library, as well as select them to add into playlists.
+
+### [Want a quick demo of the project without downloading it?](#quick-demo)
   
 ## Navigation Guide
 - [User Documentation](#user-mockumentation)
@@ -166,7 +168,7 @@ This is a preliminary, tentative plan for the user interface. This is not meant 
     - I exited without saving! What do I do?:&nbsp; sorry dear user, your disappointment cannot be saved, though your
      data certainly could have been before closing. unfortunately this project is in its stone age era of only manual
      saving. I leave you this image of mr. resetti from animal crossing for future reference:<br>
-    ![mrresetti](https://github.com/Jaye136/PListen/blob/main/data/WW_Resetti.png)
+    ![mrresetti "Before you turn the power off, SAVE! You gotta SAVE! I KNOW you knew that!"](https://github.com/Jaye136/PListen/blob/main/data/WW_Resetti.png)
 
 <ins>How do I load?</ins>
 - Loading can be done by clicking on the <ins>*Save/load data*</ins> button in the side menu panel, and then clicking
@@ -266,3 +268,132 @@ Wed Nov 26 14:38:09 PST 2025
  to start learning the exact data structures I had been grasping for, right after the major code phase deadline.
  Still, I'm glad that I can now at least put a name to what I had been searching for. I'm looking forward to
  implementing these strategies in my next project.
+
+----
+
+## Quick Demo
+Welcome to the opening screen!<br>
+![the main menu of PListen](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/mainmenu.png)
+
+
+A few sample tunes are included in your welcome package.<br>
+Some songs belong to the same album, and some albums belong to the same artist.<br>
+>  *This information is displayed above the song!*
+
+![visualisation of song-album-artist relationships](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/libview.png)
+
+
+Let's press the [New Song+] button! Here, catch! Here's a form to fill out!<br>
+
+![song creation menu](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/songcreate.png)
+
+
+We have to make sure users can't skip past this screen if they want to add a new song. This information is unique to 
+each song, and it's the bare minimum for the app to function.<br>
+
+![showing how users are blocked from creating songs with invalid titles or links](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/nullsongreject.png)
+
+
+Anything here is additional information, which gets assigned a default value if we don't enter anything. Here, we 
+encounter a potential problem that I couldn't overcome back then.<br>
+<ins>Developing challenge 2:</ins> If you enter the name of an artist or album you already have in your library, your song 
+will get adopted into that artist or album's repertoire automatically. An album and an artist can have the same name. 
+But if two albums, or two artists have the same name... everything incorrectly gets attributed to the first artist when 
+loading the save!<br>
+
+> I couldn't figure out how to assign unique IDs back then. I have could given each object an ID based on order of 
+creation, but I wanted to make sure curious users couldn't corrupt their save files by tampering with the JSON file.
+<sup>(I'm guilty of doing that with other programs...)</sup><br>
+If someone were to swap the unique ID of a song and album, then a song might try to refer to another song as its 
+artist. Loading that save would get weird.<br>
+
+> Of course, I could make a unique ID with two parts: the type, followed by its creation number. Like s0, for 
+song 0. It would be easier to debug, since when loading the save file, I can check the type of object before assigning 
+the relation, and throw accurate error signals. Unfortunately, I only thought of it after the project 
+deadline.<sup>(darn!)</sup><br>
+
+![song creation menu for additional information](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/additionalinfo.png)
+
+
+Nice! Our new song is looking great. We can designate songs as the currently playing song using the ▶ symbol, or by 
+clicking ⋮ to bring up their menu.<br>
+
+![song options menu](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/songoptions.png)
+
+
+We can also add songs to our queue through the menu. Here's mine!<br>
+> *Queue puts things at the back of our queue, and next puts things at the front.
+<sup>(I didn't know having both options had an effect on runtime back then :[ )</sup>*<br>
+
+![example queue](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/queuemake.png)
+
+
+How was the song?
+> *Just for fun, and to keep things separated, BingBing!! is if the song's link starts with https://. BingBong!! 
+is the message for all else (filepaths), in case the song is stored locally. Even if your song file is somehow(?) 
+named https://, it won't get confused as a link, since it's not like your filepath itself (e.g. 
+downloads/songs/"https://.mp3") starts with https://.*<br>
+
+![playing a song on the queue](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/playsong.png)
+
+
+Well, I suppose listening to it twice would be boring.<br>
+![skipping a song on the queue](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/skipsong.png)
+
+
+If you like a song, give it a favourite!<br>
+<ins>Developing challenge 2:</ins> Keeping the favourite signs on the 'now playing' bar and on the 'view queue/library' 
+panels synced was thought provoking. The 'now playing' bar auto refreshes if any changes are made to the currently made 
+song in the libary or queue panels. That's not a very expensive operation, since the 'now playing' bar only displays one 
+song at a time. But what if the song is favourited in the 'now playing bar'? Then the entire library or queue panel 
+<sup>(depending on which you were on at the time)</sup> would have to auto refresh. What if your library or 
+queue was really big though? What if you had to update 1000, 10000, or 100000 songs?<br>
+I never figured out a solution, but if I did this project now, I'd maybe try rendering the library/queue in chunks, so 
+that I would only have to refresh the chunk the affected song was in instead of the whole library.<br>
+
+![favouriting a song](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/songfav.png)
+
+
+All done for today? Don't forget to save the changes to your song library before you leave! Remember, your queue is 
+temporary and tied to your session. Once you close the app, it won't save!<br>
+<ins>Developing challenge 3:</ins> Everything in the project took a lot of time to implement, but was relatively easy 
+otherwise. This was, however, not the case for user persistence. Each song holds a reference to an artist, while each 
+artist has a collection (array) of songs. A user's library, and all objecct associations within are saved into a JSON 
+file.<br>
+So how do we preserve a cyclic relationship written in what is essentially a text file? We write down all of the 
+information stored in object A, which includes a relationship to object B. Therefore, we should include the information 
+for object B within object A. The information for object B includes a reference to object A. Therefore, we should 
+include the information for object A within object B. The information for object A includes... uh oh. oh no.<br>
+The solution that I came up for this is to only save the songs in the JSON file, only writing in the name of the artist 
+and album, if applicable. Instead of also saving the artist and album, I reconstruct them based on the information that 
+can be inferred from the saved songs.<br>
+Let's take boomChaCha in the album wanting to MOVE! created by chachaBoomer as an example:<br>
+> When loading, we reconstruct the song object using its name and link.<br>
+> Then the next field we see is the name of the creator, chachaBoomer.<br>
+> &nbsp;&nbsp;1. We look for an artist named chachaBoomer in our loaded library so far. We don't find anything, since 
+we haven't loaded anything yet.
+> &nbsp;&nbsp;2. We create an artist object named chachaBoomer, and make it note that boomChaCha is one of its 
+creations.<br>
+> &nbsp;&nbsp;3. We make the song note that chachaBoomer is its creator.<br>
+> Then, we see the album, wanting to MOVE!.<br>
+> &nbsp;&nbsp;1. We look for an album named wanting to MOVE! in our libary so far. We don't find anything.<br>
+> &nbsp;&nbsp;2. We create an album object named wanting to MOVE! and make it note that boomChaCha belongs to it, as 
+well as noting the reverse relationship in boomChaCha.<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;1. We know wanting to MOVE! has a creator.<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;2. From boomChaCha, we can infer that the creator is chachaBoomer.<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;3. We look for an artist named chachaBoomer in our loaded library so far. We have a match!<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;4. We connect wanting to MOVE! to chachaBoomer, and vice versa as well.<br>
+> We then assign the remaining fields to boomChaCha, and we have a reconstructed song-album-artist doubly-linked 
+relationship!<br>
+
+![saving the library](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/savedata.png)
+
+
+Let's make sure everything loads correctly.<br>
+
+![fresh restart of application](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/mainmenu2.png)
+
+
+Nice!<br>
+
+![loading the library](https://github.com/Jaye136/PListen/blob/main/data/quickdemo/loaddata.png)
